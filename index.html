@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Lado Bom | Vertical CR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="lado-bom-seguros-documentacao-logo.svg" alt="Lado Bom Seguros Logo">
+            <div class="title-group">
+                <h1>Time Lado Bom</h1>
+                <p>Vertical CR (Crédito Real)</p>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar colaborador, cargo ou área...">
+        </div>
+    </header>
+
+    <nav class="tab-navigation">
+        <div class="tabs-container">
+            <button class="tab-btn active" data-category="internal">Equipe Interna</button>
+            <button class="tab-btn" data-category="external">Agentes Externos</button>
+        </div>
+    </nav>
+
+    <main>
+        <div id="org-root" class="org-container">
+            <div class="loading">Carregando estrutura...</div>
+        </div>
+    </main>
+
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-data"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

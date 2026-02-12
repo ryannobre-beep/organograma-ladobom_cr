@@ -1,0 +1,124 @@
+{
+  "company": "Lado Bom Seguros",
+  "unit": "Operação Vertical CR (Crédito Real)",
+  "categories": {
+    "internal": [
+      {
+        "name": "Liderança e Gestão",
+        "members": [
+          {
+            "name": "Douglas Berto",
+            "role": "Head de Operações",
+            "email": ""
+          },
+          {
+            "name": "Marco Antônio Lenzi Duarte",
+            "role": "CTO – Líder em Tecnologia e Inovação",
+            "email": ""
+          },
+          {
+            "name": "Jonatan Matschulat",
+            "role": "Diretor Comercial",
+            "email": "jonatan@redevistorias.com.br"
+          }
+        ]
+      },
+      {
+        "name": "Seguros e Sinistros",
+        "members": [
+          {
+            "name": "Julia Maria Rodrigues",
+            "role": "Supervisora de Sinistros",
+            "email": ""
+          },
+          {
+            "name": "Elen Moura",
+            "role": "Analista Administrativo de Seguros Pleno",
+            "function": "Responsável pela abertura e regularização de sinistros novos e pendentes. Atua na redução de retrabalho e na padronização documental, assegurando eficiência operacional.",
+            "email": ""
+          },
+          {
+            "name": "Bruna Araújo",
+            "role": "Analista Administrativo de Seguros Júnior",
+            "function": "Acompanha sinistros da Crédito Real, garantindo comunicação clara entre seguradora e imobiliária. Atua no controle de prazos e qualidade do atendimento. Treina imobiliárias e assegura o fluxo correto de processos. Executa o ciclo completo de sinistros com foco em agilidade e qualidade. Garante atualização de boards e planilhas e atua na capacitação de parceiros.",
+            "email": ""
+          },
+          {
+            "name": "Lara Silveira Agostinho",
+            "role": "Auxiliar Administrativo",
+            "function": "Oferece suporte operacional à equipe de sinistros, mantendo planilhas e status atualizados. Apoia o controle de previsões de pagamento e comunicação com clientes.",
+            "email": ""
+          }
+        ]
+      },
+      {
+        "name": "Contratação, Imobiliário e Garantias",
+        "members": [
+          {
+            "name": "Cesar Eduardo Fernandes",
+            "role": "Supervisor de Contratação",
+            "email": ""
+          },
+          {
+            "name": "Bruna Lucena Gouveira de Araujo",
+            "role": "Analista Administrativo de Seguros Júnior",
+            "function": "Atua em contratações e cancelamentos de seguro incêndio e RE (Ramos Elementares), apoia imobiliárias em dúvidas e atualizações.",
+            "email": ""
+          },
+          {
+            "name": "Maria Eduarda Alves Machado",
+            "role": "Assistente Administrativo",
+            "function": "Realiza resgates de títulos de capitalização e atualiza clientes.",
+            "email": ""
+          }
+        ]
+      },
+      {
+        "name": "Customer Success (CS)",
+        "members": [
+          {
+            "name": "Michel Pauletti",
+            "role": "Coordenador Comercial",
+            "email": "michel.pauletti@redevistorias.com.br"
+          },
+          {
+            "name": "Maria Eduarda Guerreiro",
+            "role": "Analista de CS Júnior",
+            "function": "Realiza onboarding e atendimento.",
+            "email": ""
+          }
+        ]
+      },
+      {
+        "name": "Tecnologia e Inovação",
+        "members": [
+          {
+            "name": "Alexandra Bortolin de Souza",
+            "role": "Analista de RH (HRBP)",
+            "function": "Conduz a estratégia de pessoas.",
+            "email": ""
+          },
+          {
+            "name": "Ryan Silva",
+            "role": "Analista de Processos",
+            "function": "Desenha e otimiza processos.",
+            "email": ""
+          }
+        ]
+      }
+    ],
+    "external": [
+      {
+        "name": "Parceiros e Corretores",
+        "members": [
+          {
+            "name": "Exemplo Agente 1",
+            "role": "Corretor Externo",
+            "function": "Mapeamento em andamento...",
+            "email": "agente@lado.bom"
+          }
+        ]
+      }
+    ]
+  }
+}
