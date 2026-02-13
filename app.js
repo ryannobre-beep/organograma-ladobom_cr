@@ -15,17 +15,73 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             companyData = data;
             renderOrg(data.categories[currentCategory]);
+            renderVacationGlobalSummary(data);
         })
         .catch(error => {
             console.error('Erro ao carregar dados:', error);
             orgRoot.innerHTML = '<div class="error">Erro ao carregar os dados. Verifique se o servidor local está rodando.</div>';
         });
 
+    function renderVacationGlobalSummary(data) {
+        const container = document.getElementById('vacation-summary-container');
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const vacationingMembers = [];
+
+        ['internal', 'external'].forEach(cat => {
+            data.categories[cat].forEach(dept => {
+                dept.members.forEach(member => {
+                    if (member.vacationStart && member.vacationEnd) {
+                        const start = new Date(member.vacationStart);
+                        const end = new Date(member.vacationEnd);
+                        start.setHours(0, 0, 0, 0);
+                        end.setHours(0, 0, 0, 0);
+
+                        if (today >= start && today <= end) {
+                            vacationingMembers.push({
+                                name: member.name,
+                                returnDate: new Date(new Date(end).setDate(end.getDate() + 1)).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        if (vacationingMembers.length > 0) {
+            container.style.display = 'block';
+            container.innerHTML = `
+                <div class="vacation-summary-card">
+                    <div class="vacation-summary-title">
+                        <h2>🏝️ Equipe em Férias</h2>
+                    </div>
+                    <div class="vacation-summary-list">
+                        ${vacationingMembers.map(m => `
+                            <div class="vacation-summary-item">
+                                <div class="vacation-summary-avatar">${m.name.charAt(0)}</div>
+                                <div class="vacation-summary-info">
+                                    <strong>${m.name}</strong>
+                                    <span>Volta em ${m.returnDate}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        } else {
+            container.style.display = 'none';
+        }
+    }
+
     function renderOrg(departments, searchTerm = '') {
         orgRoot.innerHTML = '';
         const filteredSearch = searchTerm.toLowerCase();
 
-        departments.forEach(dept => {
+        // Ordenar áreas por displayOrder
+        const sortedDepartments = [...departments].sort((a, b) => (a.displayOrder || 99) - (b.displayOrder || 99));
+
+        sortedDepartments.forEach(dept => {
             const filteredMembers = dept.members.filter(member =>
                 member.name.toLowerCase().includes(filteredSearch) ||
                 member.role.toLowerCase().includes(filteredSearch) ||

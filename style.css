@@ -497,3 +497,103 @@ main {
     color: var(--primary);
     font-weight: 700;
 }
+
+/* Resumo Global de Férias */
+.vacation-summary-container {
+    max-width: 1200px;
+    margin: 0 auto 2.5rem auto;
+    padding: 0 1rem;
+    display: none;
+    /* Só aparece se houver alguém em férias */
+}
+
+.vacation-summary-card {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    color: white;
+    box-shadow: 0 10px 25px rgba(243, 156, 18, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.vacation-summary-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vacation-summary-title h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.vacation-summary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex: 1;
+}
+
+.vacation-summary-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.vacation-summary-avatar {
+    width: 32px;
+    height: 32px;
+    background: white;
+    color: #e67e22;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.vacation-summary-info {
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+.vacation-summary-info strong {
+    display: block;
+    font-size: 0.9rem;
+}
+
+/* Ordenação de Áreas Admin */
+.dept-order-controls {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.btn-order {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-order:hover:not(:disabled) {
+    background: #EDF2F7;
+    border-color: #CBD5E0;
+}
+
+.btn-order:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}

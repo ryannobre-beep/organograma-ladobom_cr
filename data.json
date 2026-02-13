@@ -6,6 +6,7 @@
       {
         "id": "dept_lideranca",
         "name": "Liderança e Gestão",
+        "displayOrder": 1,
         "members": [
           {
             "id": "mem_marco_antonio",
@@ -24,6 +25,7 @@
       {
         "id": "dept_seguros",
         "name": "Seguros e Sinistros",
+        "displayOrder": 2,
         "members": [
           {
             "id": "mem_julia_maria",
@@ -57,6 +59,7 @@
       {
         "id": "dept_contratacao",
         "name": "Contratação, Imobiliário e Garantias",
+        "displayOrder": 3,
         "members": [
           {
             "id": "mem_cesar_eduardo",
@@ -83,6 +86,7 @@
       {
         "id": "dept_cs",
         "name": "Customer Success (CS)",
+        "displayOrder": 4,
         "members": [
           {
             "id": "mem_michel_pauletti",
@@ -102,6 +106,7 @@
       {
         "id": "dept_tech",
         "name": "Tecnologia e Inovação",
+        "displayOrder": 5,
         "members": [
           {
             "id": "mem_alexandra_bortolin",
@@ -143,6 +148,7 @@
       {
         "id": "dept_parceiros",
         "name": "Parceiros e Corretores",
+        "displayOrder": 1,
         "members": [
           {
             "id": "mem_exemplo_agente",
