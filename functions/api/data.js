@@ -1,8 +1,8 @@
 export async function onRequestGet(context) {
     const { env } = context;
     const CODA_API_KEY = env.CODA_API_KEY;
-    const DOC_ID = env.CODA_DOC_ID || "dNqBfudo5pw"; // Fallback para o Doc ID identificado
-    const TABLE_ID = "Colaboradores"; // Nome sugerido da tabela
+    const DOC_ID = env.CODA_DOC_ID || "NqBfudo5pw"; // ID do documento verificado
+    const TABLE_ID = "grid-BsCb45xbdh"; // ID exato da tabela
 
     const corsHeaders = {
         "Access-Control-Allow-Origin": "*",
