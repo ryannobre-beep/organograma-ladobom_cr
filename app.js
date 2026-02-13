@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             container.innerHTML = `
                 <div class="vacation-summary-card">
                     <div class="vacation-summary-title">
-                        <h2>🏝️ Equipe em Férias</h2>
+                        <h2>Equipe em Férias</h2>
                     </div>
                     <div class="vacation-summary-list">
                         ${vacationingMembers.map(m => `

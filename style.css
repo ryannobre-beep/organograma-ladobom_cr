@@ -498,79 +498,73 @@ main {
     font-weight: 700;
 }
 
-/* Resumo Global de Férias */
+/* Resumo Global de Férias - Minimalista */
 .vacation-summary-container {
     max-width: 1200px;
-    margin: 0 auto 2.5rem auto;
+    margin: 0 auto 2rem auto;
     padding: 0 1rem;
     display: none;
-    /* Só aparece se houver alguém em férias */
 }
 
 .vacation-summary-card {
-    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-    border-radius: 16px;
-    padding: 1.5rem 2rem;
-    color: white;
-    box-shadow: 0 10px 25px rgba(243, 156, 18, 0.2);
+    background: #fdfaf3;
+    border: 1px solid #f9ebbe;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    color: #856404;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
-}
-
-.vacation-summary-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    gap: 1.5rem;
 }
 
 .vacation-summary-title h2 {
-    font-size: 1.4rem;
-    font-weight: 800;
+    font-size: 1.1rem;
+    font-weight: 700;
     margin: 0;
+    color: #856404;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .vacation-summary-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.8rem;
     flex: 1;
 }
 
 .vacation-summary-item {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 0.6rem 1.2rem;
-    border-radius: 12px;
+    background: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    gap: 8px;
+    border: 1px solid #f9ebbe;
 }
 
 .vacation-summary-avatar {
-    width: 32px;
-    height: 32px;
-    background: white;
-    color: #e67e22;
+    width: 24px;
+    height: 24px;
+    background: #f39c12;
+    color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .vacation-summary-info {
-    font-size: 0.85rem;
-    line-height: 1.2;
+    font-size: 0.8rem;
 }
 
 .vacation-summary-info strong {
-    display: block;
-    font-size: 0.9rem;
+    color: #856404;
 }
+
 
 /* Ordenação de Áreas Admin */
 .dept-order-controls {
