@@ -205,14 +205,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function getMemberNameById(id) {
-        let name = '...';
+        if (!id) return '';
+        let name = null;
         ['internal', 'external'].forEach(cat => {
+            if (!companyData.categories[cat]) return;
             companyData.categories[cat].forEach(dept => {
                 const found = dept.members.find(m => m.id === id);
                 if (found) name = found.name;
             });
         });
-        return name;
+        return name || id; // Retorna o próprio ID se não encontrar (pode ser um nome digitado no Coda)
     }
 
     // Modal close logic

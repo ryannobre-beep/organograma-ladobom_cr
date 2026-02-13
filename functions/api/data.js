@@ -66,10 +66,10 @@ function transformCodaToOrgChart(items) {
 
     items.forEach(item => {
         const values = item.values;
-        // Mapeamento das colunas do Coda (usando nomes prováveis ou IDs)
+        // Mapeamento das colunas do Coda
         // O Coda API retorna os campos baseados nos nomes das colunas
         const member = {
-            id: values["ID"] || item.id,
+            id: values["ID"] || item.id, // Usa a coluna ID ou o ID interno da linha do Coda
             name: values["Nome"],
             role: values["Cargo"],
             function: values["Função"],
