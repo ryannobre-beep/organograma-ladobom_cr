@@ -9,18 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
     let companyData = null;
     let currentCategory = 'internal';
 
-    // Load Data from Coda Proxy
     fetch('/api/data')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        })
         .then(data => {
-            if (data.error) throw new Error(data.error);
             companyData = data;
             renderOrg(data.categories[currentCategory]);
             renderVacationGlobalSummary(data);
         })
         .catch(error => {
             console.error('Erro ao carregar dados:', error);
-            orgRoot.innerHTML = '<div class="error">Erro ao carregar os dados. Verifique se o servidor local está rodando.</div>';
+            orgRoot.innerHTML = `
+                <div style="text-align: center; padding: 3rem; color: #718096; max-width: 600px; margin: 0 auto;">
+                    <p style="font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Erro ao carregar dados em tempo real.</p>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">
+                        Este erro é normal se você estiver testando o arquivo diretamente no computador.<br><br>
+                        <strong>Para funcionar:</strong> O site precisa estar publicado no <strong>Cloudflare</strong> com as chaves (API Key e Doc ID) configuradas.
+                    </p>
+                    <p style="font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7;">Detalhe técnico: ${error.message}</p>
+                </div>
+            `;
         });
 
     function renderVacationGlobalSummary(data) {
