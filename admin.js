@@ -139,8 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
     addMemberBtn.onclick = () => openEditForm(null, currentData.categories.internal[0].id);
 
     // Lógica de Salvar/Excluir
-    memberForm.onsubmit = (e) => {
+    memberForm.onsubmit = async (e) => {
         e.preventDefault();
+
+        const submitBtn = memberForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Salvando...';
 
         const id = document.getElementById('edit-member-id').value;
         const name = document.getElementById('form-name').value;
@@ -157,19 +162,42 @@ document.addEventListener('DOMContentLoaded', () => {
             function: functionText
         };
 
-        // Remover de depto antigo se estiver editando
-        if (id) {
-            removeMemberById(id);
-        }
+        // Snapshot dos dados antes da alteração (para rollback se der erro)
+        const oldData = JSON.parse(JSON.stringify(currentData));
 
-        // Adicionar ao novo depto
+        if (id) removeMemberById(id);
         addMemberToDept(newMember, deptId);
 
-        renderAdminList();
-        memberFormModal.style.display = 'none';
+        try {
+            // Agora usamos o endpoint relativo (Pages Function)
+            const WORKER_URL = '/api/update';
 
-        console.log('Dados atualizados:', currentData);
-        alert('Dados atualizados em memória! Clique em "Baixar JSON" para obter o arquivo atualizado.');
+            const response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    newData: currentData,
+                    commitMessage: `Atualização: ${name} (${role})`
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert('Alterações salvas com sucesso! O site será atualizado em 1 minuto.');
+                renderAdminList();
+                memberFormModal.style.display = 'none';
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            console.error('Erro ao salvar:', error);
+            alert('Erro ao salvar no GitHub: ' + error.message + '\n\nSuas alterações foram mantidas apenas nesta sessão. Tente baixar o JSON como backup.');
+            // Rollback opcional: currentData = oldData;
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        }
     };
 
     deleteMemberBtn.onclick = () => {
