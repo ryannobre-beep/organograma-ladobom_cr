@@ -114,8 +114,11 @@
             "id": "mem_ryan_silva",
             "name": "Ryan Silva",
             "role": "Analista de Processos",
+            "email": "",
             "function": "Desenha e otimiza processos.",
-            "email": ""
+            "vacationStart": "2026-02-11",
+            "vacationEnd": "2026-02-20",
+            "substituteId": "mem_alexandra_bortolin"
           }
         ]
       },
