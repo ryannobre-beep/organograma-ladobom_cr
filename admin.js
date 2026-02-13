@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
         adminAuthSection.style.display = 'none';
         adminPanelSection.style.display = 'block';
 
-        // Pegar dados atuais do app.js (ou recarregar)
-        fetch('data.json')
+        // Pegar dados atuais com cache-buster para garantir que as setas apareçam
+        fetch(`data.json?t=${Date.now()}`)
             .then(res => res.json())
             .then(data => {
                 currentData = data;
