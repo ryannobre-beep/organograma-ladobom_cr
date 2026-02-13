@@ -84,9 +84,26 @@
         ]
       },
       {
+        "id": "dept_1770989619427",
+        "name": "Pessoas Chaves",
+        "members": [
+          {
+            "id": "mem_1770989762808",
+            "name": "Ana Carolina Minato",
+            "role": "Consultora de Seguros - Condomínios ",
+            "email": "ana.minato@ladobom.com",
+            "function": "Responsável por renovações, contratação e acompanhamento das carteiras da CR na parte de condomínios.",
+            "vacationStart": "2026-02-23",
+            "vacationEnd": "2026-03-27",
+            "substituteId": "mem_cesar_eduardo"
+          }
+        ],
+        "displayOrder": 4
+      },
+      {
         "id": "dept_cs",
         "name": "Customer Success (CS)",
-        "displayOrder": 4,
+        "displayOrder": 5,
         "members": [
           {
             "id": "mem_michel_pauletti",
@@ -102,23 +119,6 @@
             "email": ""
           }
         ]
-      },
-      {
-        "id": "dept_1770989619427",
-        "name": "Pessoas Chaves",
-        "members": [
-          {
-            "id": "mem_1770989762808",
-            "name": "Ana Carolina Minato",
-            "role": "Consultora de Seguros - Condomínios ",
-            "email": "ana.minato@ladobom.com",
-            "function": "Responsável por renovações, contratação e acompanhamento das carteiras da CR na parte de condomínios.",
-            "vacationStart": "2026-02-23",
-            "vacationEnd": "2026-03-27",
-            "substituteId": "mem_cesar_eduardo"
-          }
-        ],
-        "displayOrder": 5
       },
       {
         "id": "dept_tech",
