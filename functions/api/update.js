@@ -15,8 +15,8 @@ export async function onRequestPost(context) {
         const { newData, commitMessage, authCode } = await request.json();
 
         // Verificação de segurança: Código de Acesso
-        const SIGNED_ADMIN_CODE = env.ADMIN_CODE || "CR2024"; // Fallback se não configurado
-        if (authCode !== SIGNED_ADMIN_CODE) {
+        const SIGNED_ADMIN_CODE = (env.ADMIN_CODE || "CR2024").trim();
+        if (authCode.trim() !== SIGNED_ADMIN_CODE) {
             return new Response(JSON.stringify({ success: false, error: "Código de acesso inválido!" }), {
                 status: 401,
                 headers: { ...corsHeaders, "Content-Type": "application/json" }

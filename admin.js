@@ -52,8 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Autenticação (Agora valida apenas se não está vazio localmente, a validação real ocorre no servidor)
     authBtn.onclick = () => {
-        if (adminCodeInput.value.trim() !== '') {
-            userAuthCode = adminCodeInput.value;
+        const enteredCode = adminCodeInput.value.trim();
+        if (enteredCode !== '') {
+            userAuthCode = enteredCode;
             loadAdminPanel();
         } else {
             alert('Insira um código!');
