@@ -239,6 +239,10 @@ main {
     padding: 3rem;
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-height: 90vh;
+    /* Limita a altura */
+    overflow-y: auto;
+    /* Permite rolagem interna */
 }
 
 .close-modal {
@@ -303,6 +307,22 @@ main {
 
 .admin-modal-content {
     max-width: 800px;
+}
+
+.admin-actions-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #F7FAFC;
+    border-radius: 12px;
+    border: 1px dashed var(--primary-light);
+}
+
+.admin-actions-bar div {
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .auth-form {

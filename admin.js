@@ -16,8 +16,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const formDeptSelect = document.getElementById('form-dept');
     const deleteMemberBtn = document.getElementById('delete-member-btn');
 
+    // Novos selectores para Áreas
+    const addDeptBtn = document.getElementById('add-dept-btn');
+    const newDeptInput = document.getElementById('new-dept-name');
+
     let currentData = null;
     const ACCESS_CODE = 'CR2024'; // Código de acesso temporário
+
+    // Criar nova área
+    addDeptBtn.onclick = () => {
+        const name = newDeptInput.value.trim();
+        if (!name) return alert('Insira um nome para a área');
+
+        const newDept = {
+            id: `dept_${Date.now()}`,
+            name: name,
+            members: []
+        };
+
+        // Adiciona por padrão na categoria interna
+        currentData.categories.internal.push(newDept);
+        newDeptInput.value = '';
+        renderAdminList();
+        populateDeptSelect();
+        alert(`Área "${name}" criada com sucesso!`);
+    };
 
     // Abrir modal admin
     adminLoginBtn.onclick = () => {
