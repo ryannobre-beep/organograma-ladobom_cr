@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newDeptInput = document.getElementById('new-dept-name');
 
     let currentData = null;
-    const ACCESS_CODE = 'CR2024'; // Código de acesso temporário
+    let userAuthCode = ''; // Armazena o código inserido pelo usuário
 
     // Criar nova área
     addDeptBtn.onclick = () => {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newDeptInput.value = '';
         renderAdminList();
         populateDeptSelect();
-        alert(`Área "${name}" criada com sucesso!`);
+        alert(`Área "${name}" preparada! Não esqueça de Salvar as alterações.`);
     };
 
     // Abrir modal admin
@@ -50,12 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         adminCodeInput.value = '';
     };
 
-    // Autenticação simples
+    // Autenticação (Agora valida apenas se não está vazio localmente, a validação real ocorre no servidor)
     authBtn.onclick = () => {
-        if (adminCodeInput.value === ACCESS_CODE) {
+        if (adminCodeInput.value.trim() !== '') {
+            userAuthCode = adminCodeInput.value;
             loadAdminPanel();
         } else {
-            alert('Código incorreto!');
+            alert('Insira um código!');
         }
     };
 
@@ -148,7 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     newData: currentData,
-                    commitMessage: commitMessage
+                    commitMessage: commitMessage,
+                    authCode: userAuthCode
                 })
             });
 

@@ -12,7 +12,16 @@ export async function onRequestPost(context) {
     }
 
     try {
-        const { newData, commitMessage } = await request.json();
+        const { newData, commitMessage, authCode } = await request.json();
+
+        // Verificação de segurança: Código de Acesso
+        const SIGNED_ADMIN_CODE = env.ADMIN_CODE || "CR2024"; // Fallback se não configurado
+        if (authCode !== SIGNED_ADMIN_CODE) {
+            return new Response(JSON.stringify({ success: false, error: "Código de acesso inválido!" }), {
+                status: 401,
+                headers: { ...corsHeaders, "Content-Type": "application/json" }
+            });
+        }
 
         const REPO = "ryannobre-beep/organograma-ladobom_cr";
         const FILE_PATH = "data.json";
