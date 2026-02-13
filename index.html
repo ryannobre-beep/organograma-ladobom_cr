@@ -105,6 +105,32 @@
                     <label>Principais Funções:</label>
                     <textarea id="form-function" rows="4"></textarea>
                 </div>
+
+                <!-- Novos campos para Férias -->
+                <div
+                    style="margin-top: 1.5rem; padding: 1.2rem; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <h4
+                        style="font-size: 0.85rem; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;">
+                        🏖️ Gerenciar Férias
+                    </h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div class="form-group">
+                            <label style="font-size: 0.75rem;">Data Início:</label>
+                            <input type="date" id="vacation-start">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.75rem;">Data Fim:</label>
+                            <input type="date" id="vacation-end">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 0.75rem;">Quem substituirá?</label>
+                        <select id="vacation-substitute">
+                            <option value="">Selecione um substituto...</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-actions">
                     <button type="button" id="delete-member-btn" class="btn-danger"
                         style="display: none;">Excluir</button>

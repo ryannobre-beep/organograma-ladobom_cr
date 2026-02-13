@@ -125,6 +125,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function populateSubstituteSelect(currentMemberId) {
+        const substituteSelect = document.getElementById('vacation-substitute');
+        substituteSelect.innerHTML = '<option value="">Selecione um substituto...</option>';
+
+        ['internal', 'external'].forEach(cat => {
+            currentData.categories[cat].forEach(dept => {
+                dept.members.forEach(m => {
+                    if (m.id !== currentMemberId) {
+                        const option = document.createElement('option');
+                        option.value = m.id;
+                        option.textContent = `${m.name} (${dept.name})`;
+                        substituteSelect.appendChild(option);
+                    }
+                });
+            });
+        });
+    }
+
     function openEditForm(member, deptId) {
         document.getElementById('form-title').textContent = member ? 'Editar Colaborador' : 'Novo Colaborador';
         document.getElementById('edit-member-id').value = member ? member.id : '';
@@ -134,11 +152,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('form-email').value = (member && member.email) ? member.email : '';
         document.getElementById('form-function').value = (member && member.function) ? member.function : '';
 
+        // Campos de férias
+        document.getElementById('vacation-start').value = (member && member.vacationStart) ? member.vacationStart : '';
+        document.getElementById('vacation-end').value = (member && member.vacationEnd) ? member.vacationEnd : '';
+
+        populateSubstituteSelect(member ? member.id : null);
+        document.getElementById('vacation-substitute').value = (member && member.substituteId) ? member.substituteId : '';
+
         deleteMemberBtn.style.display = member ? 'block' : 'none';
         memberFormModal.style.display = 'flex';
     }
 
     addMemberBtn.onclick = () => openEditForm(null, currentData.categories.internal[0].id);
+
 
     // Função reutilizável para salvar os dados no GitHub
     async function saveData(commitMessage) {
@@ -185,14 +211,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const deptId = document.getElementById('form-dept').value;
         const email = document.getElementById('form-email').value;
         const functionText = document.getElementById('form-function').value;
+        const vacationStart = document.getElementById('vacation-start').value;
+        const vacationEnd = document.getElementById('vacation-end').value;
+        const substituteId = document.getElementById('vacation-substitute').value;
 
         const newMember = {
             id: id || `mem_${Date.now()}`,
             name,
             role,
             email,
-            function: functionText
+            function: functionText,
+            vacationStart,
+            vacationEnd,
+            substituteId
         };
+
 
         // Snapshot dos dados antes da alteração (para rollback se der erro)
         // const oldData = JSON.parse(JSON.stringify(currentData)); // Not used after refactor

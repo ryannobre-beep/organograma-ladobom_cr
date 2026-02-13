@@ -45,15 +45,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 const grid = deptSection.querySelector('.members-grid');
 
                 filteredMembers.forEach(member => {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    let isOnVacation = false;
+                    let isNoticePeriod = false;
+                    let vacationMsg = '';
+
+                    if (member.vacationStart && member.vacationEnd) {
+                        const start = new Date(member.vacationStart);
+                        const end = new Date(member.vacationEnd);
+                        start.setHours(0, 0, 0, 0);
+                        end.setHours(0, 0, 0, 0);
+
+                        if (today >= start && today <= end) {
+                            isOnVacation = true;
+                        } else if (today < start) {
+                            const diffTime = Math.abs(start - today);
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            if (diffDays <= 10) {
+                                isNoticePeriod = true;
+                                vacationMsg = `Férias em ${diffDays} dia(s)`;
+                            }
+                        }
+                    }
+
                     const card = document.createElement('div');
-                    card.className = 'card';
+                    card.className = `card ${isOnVacation ? 'card-vacation' : ''}`;
                     card.innerHTML = `
+                        ${isOnVacation ? '<span class="vacation-badge">Em Férias</span>' : ''}
                         <div class="card-header">
+                            ${isNoticePeriod ? `<div class="vacation-notice">🔔 ${vacationMsg}</div>` : ''}
                             <h3>${member.name}</h3>
                             <span class="role">${member.role}</span>
                         </div>
                         <div class="card-body">
                             <p>${member.function ? member.function.substring(0, 80) + '...' : 'Descrição em fase de mapeamento.'}</p>
+                            ${isOnVacation && member.substituteId ? `<div class="substitute-info">Substituído(a) por: <span class="substitute-name">${getMemberNameById(member.substituteId)}</span></div>` : ''}
                         </div>
                         <div class="card-footer">
                             ${member.email ? `<a href="mailto:${member.email}" class="email-btn">📧 ${member.email}</a>` : '<span class="text-muted">Sem e-mail</span>'}
@@ -118,6 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
             renderOrg(companyData.categories[currentCategory], e.target.value);
         }
     });
+
+    function getMemberNameById(id) {
+        let name = '...';
+        ['internal', 'external'].forEach(cat => {
+            companyData.categories[cat].forEach(dept => {
+                const found = dept.members.find(m => m.id === id);
+                if (found) name = found.name;
+            });
+        });
+        return name;
+    }
 
     // Modal close logic
     closeModal.onclick = () => modal.style.display = 'none';

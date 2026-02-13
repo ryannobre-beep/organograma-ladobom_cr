@@ -448,3 +448,52 @@ main {
     gap: 1rem;
     margin-top: 1rem;
 }
+
+/* Estilos para Férias */
+.card-vacation {
+    border: 2px solid #f39c12 !important;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, white 0%, #fffbf2 100%) !important;
+}
+
+.vacation-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f39c12;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.vacation-notice {
+    background: #fff5e6;
+    border: 1px solid #ffe8cc;
+    color: #d97706;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    display: inline-block;
+    font-weight: 700;
+}
+
+.substitute-info {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #eee;
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.substitute-name {
+    color: var(--primary);
+    font-weight: 700;
+}
