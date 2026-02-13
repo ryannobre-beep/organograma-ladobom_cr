@@ -4,25 +4,6 @@
   "categories": {
     "internal": [
       {
-        "id": "dept_lideranca",
-        "name": "Liderança e Gestão",
-        "displayOrder": 1,
-        "members": [
-          {
-            "id": "mem_marco_antonio",
-            "name": "Marco Antônio Lenzi Duarte",
-            "role": "CTO – Líder em Tecnologia e Inovação",
-            "email": ""
-          },
-          {
-            "id": "mem_jonatan_matschulat",
-            "name": "Jonatan Matschulat",
-            "role": "Diretor Comercial",
-            "email": "jonatan@redevistorias.com.br"
-          }
-        ]
-      },
-      {
         "id": "dept_1770989619427",
         "name": "Pessoas Chaves",
         "members": [
@@ -37,7 +18,26 @@
             "substituteId": "mem_cesar_eduardo"
           }
         ],
-        "displayOrder": 2
+        "displayOrder": 1
+      },
+      {
+        "id": "dept_lideranca",
+        "name": "Liderança e Gestão",
+        "displayOrder": 2,
+        "members": [
+          {
+            "id": "mem_marco_antonio",
+            "name": "Marco Antônio Lenzi Duarte",
+            "role": "CTO – Líder em Tecnologia e Inovação",
+            "email": ""
+          },
+          {
+            "id": "mem_jonatan_matschulat",
+            "name": "Jonatan Matschulat",
+            "role": "Diretor Comercial",
+            "email": "jonatan@redevistorias.com.br"
+          }
+        ]
       },
       {
         "id": "dept_seguros",
