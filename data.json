@@ -16,6 +16,16 @@
             "vacationStart": "2026-02-23",
             "vacationEnd": "2026-03-27",
             "substituteId": "mem_cesar_eduardo"
+          },
+          {
+            "id": "mem_ryan_silva",
+            "name": "Ryan Silva",
+            "role": "Analista de Processos",
+            "email": "ryan.silva@ladobom.com",
+            "function": "Desenha e otimiza processos.",
+            "vacationStart": "",
+            "vacationEnd": "",
+            "substituteId": ""
           }
         ],
         "displayOrder": 1
@@ -131,16 +141,6 @@
             "role": "Analista de RH (HRBP)",
             "function": "Conduz a estratégia de pessoas.",
             "email": ""
-          },
-          {
-            "id": "mem_ryan_silva",
-            "name": "Ryan Silva",
-            "role": "Analista de Processos",
-            "email": "",
-            "function": "Desenha e otimiza processos.",
-            "vacationStart": "2026-02-11",
-            "vacationEnd": "2026-02-20",
-            "substituteId": "mem_alexandra_bortolin"
           }
         ]
       }
