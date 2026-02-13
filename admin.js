@@ -138,7 +138,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addMemberBtn.onclick = () => openEditForm(null, currentData.categories.internal[0].id);
 
-    // Lógica de Salvar/Excluir
+    // Função reutilizável para salvar os dados no GitHub
+    async function saveData(commitMessage) {
+        try {
+            const WORKER_URL = '/api/update';
+
+            const response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    newData: currentData,
+                    commitMessage: commitMessage
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert('Alterações salvas com sucesso no GitHub!');
+                renderAdminList();
+                memberFormModal.style.display = 'none';
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            console.error('Erro ao salvar:', error);
+            alert('Erro ao salvar no GitHub: ' + error.message + '\n\nSuas alterações foram mantidas apenas nesta sessão.');
+        }
+    }
+
+    // Lógica de Salvar (Add/Edit)
     memberForm.onsubmit = async (e) => {
         e.preventDefault();
 
@@ -163,49 +192,24 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Snapshot dos dados antes da alteração (para rollback se der erro)
-        const oldData = JSON.parse(JSON.stringify(currentData));
+        // const oldData = JSON.parse(JSON.stringify(currentData)); // Not used after refactor
 
         if (id) removeMemberById(id);
         addMemberToDept(newMember, deptId);
 
-        try {
-            // Agora usamos o endpoint relativo (Pages Function)
-            const WORKER_URL = '/api/update';
+        await saveData(`Atualização: ${name} (${role})`);
 
-            const response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    newData: currentData,
-                    commitMessage: `Atualização: ${name} (${role})`
-                })
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                alert('Alterações salvas com sucesso! O site será atualizado em 1 minuto.');
-                renderAdminList();
-                memberFormModal.style.display = 'none';
-            } else {
-                throw new Error(result.error);
-            }
-        } catch (error) {
-            console.error('Erro ao salvar:', error);
-            alert('Erro ao salvar no GitHub: ' + error.message + '\n\nSuas alterações foram mantidas apenas nesta sessão. Tente baixar o JSON como backup.');
-            // Rollback opcional: currentData = oldData;
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
     };
 
-    deleteMemberBtn.onclick = () => {
+    deleteMemberBtn.onclick = async () => {
         const id = document.getElementById('edit-member-id').value;
-        if (confirm('Tem certeza que deseja excluir este colaborador?')) {
+        const name = document.getElementById('form-name').value;
+
+        if (confirm(`Tem certeza que deseja excluir ${name}?`)) {
             removeMemberById(id);
-            renderAdminList();
-            memberFormModal.style.display = 'none';
+            await saveData(`Remoção: ${name}`);
         }
     };
 
