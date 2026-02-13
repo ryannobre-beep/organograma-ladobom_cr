@@ -19,16 +19,31 @@ document.addEventListener('DOMContentLoaded', () => {
             renderOrg(data.categories[currentCategory]);
             renderVacationGlobalSummary(data);
         })
-        .catch(error => {
+        .catch(async (error) => {
             console.error('Erro ao carregar dados:', error);
+
+            let detailedError = error.message;
+            let debugInfo = '';
+
+            // Tenta pegar o JSON de erro se for 500
+            try {
+                if (detailedError.includes('500')) {
+                    // Nota: Isso é simplificado, o erro no catch do fetch geralmente é de rede 
+                    // a menos que o throw manual no .then(response) seja disparado.
+                }
+            } catch (e) { }
+
             orgRoot.innerHTML = `
                 <div style="text-align: center; padding: 3rem; color: #718096; max-width: 600px; margin: 0 auto;">
                     <p style="font-size: 1.2rem; margin-bottom: 1rem;">⚠️ Erro ao carregar dados em tempo real.</p>
                     <p style="font-size: 0.9rem; margin-top: 1rem;">
-                        Este erro é normal se você estiver testando o arquivo diretamente no computador.<br><br>
-                        <strong>Para funcionar:</strong> O site precisa estar publicado no <strong>Cloudflare</strong> com as chaves (API Key e Doc ID) configuradas.
+                        Certifique-se de que o <strong>CODA_DOC_ID</strong> no Cloudflare é exatamente: <code>NqBfudo5pw</code> (sem o "d" no início).
                     </p>
-                    <p style="font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7;">Detalhe técnico: ${error.message}</p>
+                    <p style="font-size: 0.8rem; margin-top: 1.5rem; opacity: 0.7;">
+                        Detalhe técnico: ${detailedError}<br>
+                        ${debugInfo}
+                    </p>
+                    <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; cursor: pointer; border-radius: 4px; border: 1px solid #cbd5e0; background: white;">Tentar Novamente</button>
                 </div>
             `;
         });

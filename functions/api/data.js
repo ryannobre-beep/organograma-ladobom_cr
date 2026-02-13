@@ -21,12 +21,24 @@ export async function onRequestGet(context) {
     }
 
     try {
-        // Busca as linhas da tabela no Coda
-        // Documentação: https://coda.io/developers/apis/v1#operation/listRows
+        // 1. Busca os metadados das colunas para mapear nomes -> IDs
+        const colsResponse = await fetch(`https://coda.io/apis/v1/docs/${DOC_ID}/tables/${TABLE_ID}/columns`, {
+            headers: { "Authorization": `Bearer ${CODA_API_KEY}` }
+        });
+
+        if (!colsResponse.ok) {
+            throw new Error("Erro ao buscar colunas do Coda");
+        }
+
+        const colsData = await colsResponse.json();
+        const colMap = {};
+        colsData.items.forEach(c => {
+            colMap[c.name] = c.id;
+        });
+
+        // 2. Busca as linhas da tabela
         const response = await fetch(`https://coda.io/apis/v1/docs/${DOC_ID}/tables/${TABLE_ID}/rows`, {
-            headers: {
-                "Authorization": `Bearer ${CODA_API_KEY}`
-            }
+            headers: { "Authorization": `Bearer ${CODA_API_KEY}` }
         });
 
         if (!response.ok) {
@@ -36,22 +48,30 @@ export async function onRequestGet(context) {
 
         const rawData = await response.json();
 
-        // Transformar o formato do Coda para o formato que o OrgChart espera
-        const formattedData = transformCodaToOrgChart(rawData.items);
+        // 3. Transformação dinâmica usando o mapa de colunas
+        const formattedData = transformCodaToOrgChart(rawData.items, colMap);
 
         return new Response(JSON.stringify(formattedData), {
             headers: { ...corsHeaders, "Content-Type": "application/json" }
         });
 
     } catch (error) {
-        return new Response(JSON.stringify({ success: false, error: error.message }), {
+        return new Response(JSON.stringify({
+            success: false,
+            error: error.message,
+            debug: {
+                docId: DOC_ID,
+                tableId: TABLE_ID,
+                hasToken: !!CODA_API_KEY
+            }
+        }), {
             status: 500,
             headers: { ...corsHeaders, "Content-Type": "application/json" }
         });
     }
 }
 
-function transformCodaToOrgChart(items) {
+function transformCodaToOrgChart(items, colMap) {
     const data = {
         company: "Lado Bom Seguros",
         unit: "Operação Vertical CR (Crédito Real)",
@@ -61,28 +81,33 @@ function transformCodaToOrgChart(items) {
         }
     };
 
-    // Mapa para agrupar por departamento
     const deptMap = {};
 
     items.forEach(item => {
         const values = item.values;
-        // Mapeamento das colunas do Coda
-        // O Coda API retorna os campos baseados nos nomes das colunas
-        const member = {
-            id: values["ID"] || item.id, // Usa a coluna ID ou o ID interno da linha do Coda
-            name: values["Nome"],
-            role: values["Cargo"],
-            function: values["Função"],
-            email: values["Email"],
-            vacationStart: values["Férias Início"],
-            vacationEnd: values["Férias Fim"],
-            substituteId: values["Substituto"],
-            notes: values["Notas"]
+
+        // Função auxiliar para pegar valor com segurança pelo nome da coluna
+        const getVal = (name) => {
+            const id = colMap[name];
+            return id ? values[id] : undefined;
         };
 
-        const deptName = values["Departamento"] || "Sem Departamento";
-        const category = (values["Categoria"] || "internal").toLowerCase();
-        const displayOrder = parseInt(values["Ordem Área"]) || 99;
+        const member = {
+            id: getVal("ID") || item.id,
+            name: getVal("Nome") || "Sem Nome",
+            role: getVal("Cargo") || "",
+            function: getVal("Função") || "",
+            email: getVal("Email") || "",
+            vacationStart: getVal("Férias Início") || "",
+            vacationEnd: getVal("Férias Fim") || "",
+            substituteId: getVal("Substituto") || "",
+            notes: getVal("Notas") || ""
+        };
+
+        const deptName = getVal("Departamento") || "Sem Departamento";
+        const categoryVal = getVal("Categoria") || "internal";
+        const category = String(categoryVal).toLowerCase();
+        const displayOrder = parseInt(getVal("Ordem Área")) || 99;
 
         if (!deptMap[deptName]) {
             deptMap[deptName] = {
@@ -97,7 +122,6 @@ function transformCodaToOrgChart(items) {
         deptMap[deptName].members.push(member);
     });
 
-    // Converter mapa para o formato final
     Object.values(deptMap).forEach(dept => {
         if (dept.category === 'external') {
             data.categories.external.push(dept);
