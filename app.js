@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let companyData = null;
     let currentCategory = 'internal';
 
-    // Load Data
-    fetch('data.json')
+    // Load Data from Coda Proxy
+    fetch('/api/data')
         .then(response => response.json())
         .then(data => {
+            if (data.error) throw new Error(data.error);
             companyData = data;
             renderOrg(data.categories[currentCategory]);
             renderVacationGlobalSummary(data);
