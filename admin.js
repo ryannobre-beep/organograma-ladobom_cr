@@ -90,40 +90,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    async function moveDept(cat, index, direction) {
+        const categories = currentData.categories[cat];
+        if (direction === 'up' && index > 0) {
+            [categories[index], categories[index - 1]] = [categories[index - 1], categories[index]];
+        } else if (direction === 'down' && index < categories.length - 1) {
+            [categories[index], categories[index + 1]] = [categories[index + 1], categories[index]];
+        }
+
+        // Re-atualizar displayOrder baseada no novo array
+        categories.forEach((d, i) => d.displayOrder = i + 1);
+
+        renderAdminList();
+        await saveData("Ordenar áreas");
+    }
+
     function renderAdminList() {
         adminContent.innerHTML = '';
 
-        const allDepts = [
-            ...currentData.categories.internal,
-            ...currentData.categories.external
-        ];
+        // Renderizamos as categorias separadamente para manter a ordenação dentro de cada uma
+        ['internal', 'external'].forEach(cat => {
+            const categories = currentData.categories[cat];
 
-        allDepts.forEach(dept => {
-            const deptHeader = document.createElement('h3');
-            deptHeader.style.margin = '1.5rem 0 0.5rem 0';
-            deptHeader.style.fontSize = '0.9rem';
-            deptHeader.style.color = 'var(--primary)';
-            deptHeader.textContent = dept.name;
-            adminContent.appendChild(deptHeader);
+            categories.forEach((dept, index) => {
+                const deptHeaderContainer = document.createElement('div');
+                deptHeaderContainer.className = 'admin-dept-header';
+                deptHeaderContainer.style.display = 'flex';
+                deptHeaderContainer.style.justifyContent = 'space-between';
+                deptHeaderContainer.style.alignItems = 'center';
+                deptHeaderContainer.style.margin = '2rem 0 0.8rem 0';
+                deptHeaderContainer.style.padding = '0.5rem 0';
+                deptHeaderContainer.style.borderBottom = '2px solid #edf2f7';
 
-            dept.members.forEach(member => {
-                const item = document.createElement('div');
-                item.className = 'admin-item';
-                item.innerHTML = `
-                    <div class="admin-item-info">
-                        <h4>${member.name}</h4>
-                        <p>${member.role}</p>
-                    </div>
-                    <div class="admin-item-actions">
-                        <button class="btn-outline-small edit-btn" data-id="${member.id}">Editar</button>
+                deptHeaderContainer.innerHTML = `
+                    <h3 style="font-size: 1rem; color: var(--primary); margin: 0;">${dept.name} ${cat === 'external' ? '(Externo)' : ''}</h3>
+                    <div class="dept-order-controls">
+                        <button class="btn-order move-up" ${index === 0 ? 'disabled' : ''}>↑</button>
+                        <button class="btn-order move-down" ${index === categories.length - 1 ? 'disabled' : ''}>↓</button>
                     </div>
                 `;
 
-                item.querySelector('.edit-btn').onclick = () => openEditForm(member, dept.id);
-                adminContent.appendChild(item);
+                deptHeaderContainer.querySelector('.move-up').onclick = () => moveDept(cat, index, 'up');
+                deptHeaderContainer.querySelector('.move-down').onclick = () => moveDept(cat, index, 'down');
+
+                adminContent.appendChild(deptHeaderContainer);
+
+                dept.members.forEach(member => {
+                    const item = document.createElement('div');
+                    item.className = 'admin-item';
+                    item.innerHTML = `
+                        <div class="admin-item-info">
+                            <h4>${member.name}</h4>
+                            <p>${member.role}</p>
+                        </div>
+                        <div class="admin-item-actions">
+                            <button class="btn-outline-small edit-btn" data-id="${member.id}">Editar</button>
+                        </div>
+                    `;
+
+                    item.querySelector('.edit-btn').onclick = () => openEditForm(member, dept.id);
+                    adminContent.appendChild(item);
+                });
             });
         });
     }
+
 
     function populateSubstituteSelect(currentMemberId) {
         const substituteSelect = document.getElementById('vacation-substitute');
