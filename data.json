@@ -24,6 +24,13 @@
             "name": "Jonatan Matschulat",
             "role": "Diretor Comercial",
             "email": "jonatan@redevistorias.com.br"
+          },
+          {
+            "id": "mem_1770986671111",
+            "name": "Teste",
+            "role": "Analista",
+            "email": "",
+            "function": ""
           }
         ]
       },
