@@ -168,6 +168,11 @@
             <a class="sidebar-link" data-target="resgate"><svg class="help-icon">
                     <use href="#icon-refresh"></use>
                 </svg>Cancelamento/Resgate</a>
+
+            <div class="sidebar-nav-title">KNOWLEDGE BASE</div>
+            <a class="sidebar-link" data-target="faq"><svg class="help-icon">
+                    <use href="#icon-folder-open"></use>
+                </svg>Perguntas Frequentes</a>
         </aside>
 
         <main class="help-content">
@@ -235,7 +240,8 @@
                 </div>
 
                 <h2>Especialistas de Fiança</h2>
-                <div class="contact-grid">
+                <div class="contact-grid" id="grid-fianca">
+                    <!-- Dinâmico via Coda -->
                     <a href="https://wa.me/48988644179?text=Olá,%20Matheus!%20Dúvida%20sobre%20Cotação%20Fiança."
                         target="_blank" class="contact-card">
                         <div class="icon-circle"><svg>
@@ -286,7 +292,8 @@
                 </div>
 
                 <h2>Especialista</h2>
-                <div class="contact-grid">
+                <div class="contact-grid" id="grid-incendio">
+                    <!-- Dinâmico via Coda -->
                     <a href="https://wa.me/48988644179?text=Olá,%20Bruna!%20Dúvida%20sobre%20Seguro%20Incêndio."
                         target="_blank" class="contact-card">
                         <div class="icon-circle"><svg>
@@ -307,7 +314,8 @@
                     </svg> Seguro Condomínio</h1>
                 <p>Proteção patrimonial completa e obrigatória por lei.</p>
 
-                <div class="contact-grid">
+                <div class="contact-grid" id="grid-condominio">
+                    <!-- Dinâmico via Coda -->
                     <a href="https://wa.me/48988644179?text=Olá,%20Ana!%20Dúvida%20sobre%20Condomínio/Conteúdo."
                         target="_blank" class="contact-card">
                         <div class="icon-circle"><svg>
@@ -327,7 +335,8 @@
                     </svg> Seguro Conteúdo</h1>
                 <p>Proteção dos bens móveis e eletrônicos do inquilino dentro do imóvel locado.</p>
 
-                <div class="contact-grid">
+                <div class="contact-grid" id="grid-conteudo">
+                    <!-- Dinâmico via Coda -->
                     <a href="https://wa.me/48988644179?text=Olá,%20Ana!%20Dúvida%20sobre%20Seguro%20Conteúdo."
                         target="_blank" class="contact-card">
                         <div class="icon-circle"><svg>
@@ -347,7 +356,7 @@
                         <use href="#icon-alert-triangle"></use>
                     </svg> Sinistro Fiança</h1>
                 <p>Acionamento de garantias por inadimplência de aluguel e encargos.</p>
-                <div class="contact-grid">
+                <div class="contact-grid" id="grid-sinistro-fianca">
                     <a href="https://wa.me/48988644179?text=Olá,%20Bruna!%20Sinistro%20Fiança." target="_blank"
                         class="contact-card">
                         <div class="icon-circle"><svg>
@@ -366,7 +375,7 @@
                         <use href="#icon-alert-triangle"></use>
                     </svg> Sinistros Gerais</h1>
                 <p>Acionamento de seguros patrimoniais (Incêndio, Condomínio).</p>
-                <div class="contact-grid">
+                <div class="contact-grid" id="grid-sinistro-gerais">
                     <a href="https://wa.me/48988644179?text=Olá,%20Manuela!%20Sinistros%20Gerais." target="_blank"
                         class="contact-card">
                         <div class="icon-circle"><svg>
@@ -386,7 +395,7 @@
                         <use href="#icon-refresh"></use>
                     </svg> Cancelamento e Resgate</h1>
                 <p>Encerramento de apólices e solicitações de resgate de Capitalização.</p>
-                <div class="contact-grid">
+                <div class="contact-grid" id="grid-resgate">
                     <a href="https://wa.me/48988644179?text=Olá,%20Maria%20Eduarda!%20Cancelamento/Resgate."
                         target="_blank" class="contact-card">
                         <div class="icon-circle"><svg>
@@ -398,7 +407,18 @@
                         </div>
                     </a>
                 </div>
-            </section>
+                <!-- FAQ Dinâmico -->
+                <section id="faq" class="doc-section">
+                    <h1><svg class="help-icon" style="width: 32px; height: 32px;">
+                            <use href="#icon-folder-open"></use>
+                        </svg> Perguntas Frequentes</h1>
+                    <p>Confira as dúvidas mais comuns sobre nossos processos e coberturas.</p>
+
+                    <div id="faq-container" class="faq-list">
+                        <div class="info-box">Carregando perguntas frequentes...</div>
+                        <!-- Dinâmico via Coda -->
+                    </div>
+                </section>
         </main>
     </div>
 
