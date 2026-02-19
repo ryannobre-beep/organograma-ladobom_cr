@@ -36,7 +36,7 @@ export async function onRequestGet(context) {
 
     try {
         // 1. Busca colunas
-        const colsResponse = await fetch(`https://coda.io/apis/v1/docs/${DOC_ID}/tables/${TABLE_ID}/columns`, {
+        const colsResponse = await fetch(`https://coda.io/apis/v1/docs/${CODA_DOC_ID}/tables/${TABLE_ID}/columns`, {
             headers: { "Authorization": `Bearer ${CODA_API_KEY}` }
         });
 
@@ -56,7 +56,7 @@ export async function onRequestGet(context) {
         colsData.items.forEach(c => colMap[c.name.trim().toLowerCase()] = c.id);
 
         // 2. Busca linhas
-        const response = await fetch(`https://coda.io/apis/v1/docs/${DOC_ID}/tables/${TABLE_ID}/rows`, {
+        const response = await fetch(`https://coda.io/apis/v1/docs/${CODA_DOC_ID}/tables/${TABLE_ID}/rows`, {
             headers: { "Authorization": `Bearer ${CODA_API_KEY}` }
         });
 
