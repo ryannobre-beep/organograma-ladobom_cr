@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Lado Bom | Vertical CR</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -110,6 +110,7 @@
             <path d="M3 21v-5h5"></path>
         </symbol>
     </svg>
+
     <header>
         <div class="logo-container">
             <img src="lado-bom-seguros-documentacao-logo.svg" alt="Lado Bom Seguros Logo">
@@ -121,7 +122,7 @@
         <div style="display: flex; align-items: center;">
             <nav class="nav-header">
                 <a href="ajuda.html" class="nav-help-highlight">Ajuda</a>
-                <a href="index.html" class="active">Time Lado Bom</a>
+                <a href="index.html" class="active">Time</a>
             </nav>
             <div class="search-container">
                 <input type="text" id="search-input" placeholder="Buscar colaborador, cargo ou área...">
@@ -139,22 +140,29 @@
     <main>
         <div id="vacation-summary-container" class="vacation-summary-container"></div>
 
-        <div class="support-buttons-container" style="padding: 0 2rem; max-width: 1200px; margin: 2rem auto;">
-            <a href="https://wa.me/48988644179" target="_blank" class="contact-btn homepage-support-btn">
-                <svg class="help-icon"
-                    style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; stroke: currentColor; fill: none; stroke-width: 2.5;">
-                    <use href="#icon-message"></use>
-                </svg>
-                Atendimento Geral Comercial
-            </a>
-            <a href="https://wa.me/48999359366" target="_blank" class="contact-btn homepage-support-btn"
-                style="background-color: var(--primary);">
-                <svg class="help-icon"
-                    style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; stroke: currentColor; fill: none; stroke-width: 2.5;">
-                    <use href="#icon-alert-triangle"></use>
-                </svg>
-                Atendimento Assistências 24h
-            </a>
+        <!-- Support Bar Redesign -->
+        <div class="support-bar">
+            <h3>Canais de Suporte Direto</h3>
+            <div class="contact-grid">
+                <a href="https://wa.me/48988644179" target="_blank" class="contact-card">
+                    <div class="icon-circle"><svg>
+                            <use href="#icon-message"></use>
+                        </svg></div>
+                    <div class="card-info">
+                        <span class="card-tag">WhatsApp</span>
+                        <span class="card-name">Atendimento Comercial</span>
+                    </div>
+                </a>
+                <a href="https://wa.me/48999359366" target="_blank" class="contact-card special">
+                    <div class="icon-circle"><svg>
+                            <use href="#icon-alert-triangle"></use>
+                        </svg></div>
+                    <div class="card-info">
+                        <span class="card-tag">24 horas</span>
+                        <span class="card-name">Assistência Emergencial</span>
+                    </div>
+                </a>
+            </div>
         </div>
 
         <div id="org-root" class="org-container">
@@ -263,8 +271,8 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
-    <script src="admin.js"></script>
+    <script src="app.js?v=3"></script>
+    <script src="admin.js?v=3"></script>
 </body>
 
 </html>

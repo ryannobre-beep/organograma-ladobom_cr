@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central de Ajuda | Time Lado Bom</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -122,7 +122,7 @@
         <div style="display: flex; align-items: center;">
             <nav class="nav-header">
                 <a href="ajuda.html" class="nav-help-highlight">Ajuda</a>
-                <a href="index.html">Time Lado Bom</a>
+                <a href="index.html">Portal</a>
             </nav>
             <div class="search-container">
                 <input type="text" id="help-search" placeholder="O que você procura?">
@@ -156,10 +156,15 @@
                     <use href="#icon-package"></use>
                 </svg>Seguro Conteúdo</a>
 
-            <div class="sidebar-nav-title">Gestão e Sinistro</div>
+            <div class="sidebar-nav-title">Sinistros</div>
             <a class="sidebar-link" data-target="sinistro-fianca"><svg class="help-icon" style="color: var(--accent);">
                     <use href="#icon-alert-triangle"></use>
-                </svg>Sinistros</a>
+                </svg>Sinistro Fiança</a>
+            <a class="sidebar-link" data-target="sinistro-gerais"><svg class="help-icon" style="color: var(--accent);">
+                    <use href="#icon-alert-triangle"></use>
+                </svg>Sinistros Gerais</a>
+
+            <div class="sidebar-nav-title">Gestão</div>
             <a class="sidebar-link" data-target="resgate"><svg class="help-icon">
                     <use href="#icon-refresh"></use>
                 </svg>Cancelamento/Resgate</a>
@@ -176,20 +181,26 @@
                     Garantir agilidade na análise e segurança jurídica na contratação de garantias para locação e
                     proteção patrimonial.
                 </div>
-                <h2>Canais de Atendimento</h2>
-                <div class="support-buttons-container">
-                    <a href="https://wa.me/48988644179" target="_blank" class="contact-btn homepage-support-btn">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Atendimento Geral Comercial
+
+                <h2>Canais de Atendimento Direto</h2>
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179" target="_blank" class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Comercial Geral</span>
+                            <span class="card-name">Atendimento Lado Bom</span>
+                        </div>
                     </a>
-                    <a href="https://wa.me/48999359366" target="_blank" class="contact-btn homepage-support-btn"
-                        style="background-color: var(--primary);">
-                        <svg class="help-icon">
-                            <use href="#icon-alert-triangle"></use>
-                        </svg>
-                        Assistência Residencial 24h
+                    <a href="https://wa.me/48999359366" target="_blank" class="contact-card special">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-alert-triangle"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Emergencial</span>
+                            <span class="card-name">Assistência 24h</span>
+                        </div>
                     </a>
                 </div>
             </section>
@@ -202,28 +213,12 @@
                 <p>A solução mais completa para substituir o fiador, trazendo segurança para o proprietário e facilidade
                     para o inquilino.</p>
 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button class="coverage-toggle-btn" onclick="toggleCoverage('fianca-coverage')">
-                        <svg class="help-icon">
-                            <use href="#icon-folder"></use>
-                        </svg>
-                        <span>Ver Coberturas Detalhadas</span>
-                    </button>
-                    <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20o%20Matheus%20sobre%20Cotação%20de%20Fiança"
-                        target="_blank" class="contact-btn">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Falar com Matheus (Cotação)
-                    </a>
-                    <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20o%20Roque%20sobre%20Contratação%20de%20Fiança"
-                        target="_blank" class="contact-btn" style="background-color: var(--primary-light);">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Falar com Roque (Contratação)
-                    </a>
-                </div>
+                <button class="coverage-toggle-btn" onclick="toggleCoverage('fianca-coverage')">
+                    <svg class="help-icon">
+                        <use href="#icon-folder"></use>
+                    </svg>
+                    <span>Ver Coberturas Detalhadas</span>
+                </button>
 
                 <div id="fianca-coverage" class="coverage-details">
                     <ul class="coverage-list">
@@ -238,6 +233,30 @@
                             </svg> <strong>Multa Rescisória:</strong> Garantia da multa contratual.</li>
                     </ul>
                 </div>
+
+                <h2>Especialistas de Fiança</h2>
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179?text=Olá,%20Matheus!%20Dúvida%20sobre%20Cotação%20Fiança."
+                        target="_blank" class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Cotação</span>
+                            <span class="card-name">Matheus</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/48988644179?text=Olá,%20Roque!%20Dúvida%20sobre%20Contratação%20Fiança."
+                        target="_blank" class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Contratação</span>
+                            <span class="card-name">Roque</span>
+                        </div>
+                    </a>
+                </div>
             </section>
 
             <!-- Seguro Incêndio -->
@@ -248,160 +267,142 @@
                 <p>Proteção financeira indispensável para imóveis locatários, cobrindo danos estruturais e garantindo
                     assistência residencial.</p>
 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button class="coverage-toggle-btn" onclick="toggleCoverage('inc-coverage')">
-                        <svg class="help-icon">
-                            <use href="#icon-folder"></use>
-                        </svg>
-                        <span>Ver Coberturas Técnicas</span>
-                    </button>
-                    <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20a%20Bruna%20Lucena%20sobre%20Seguro%20Incêndio"
-                        target="_blank" class="contact-btn">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Falar com Bruna Lucena (Incêndio)
-                    </a>
-                </div>
+                <button class="coverage-toggle-btn" onclick="toggleCoverage('inc-coverage')">
+                    <svg class="help-icon">
+                        <use href="#icon-folder"></use>
+                    </svg>
+                    <span>Ver Coberturas Técnicas</span>
+                </button>
 
                 <div id="inc-coverage" class="coverage-details">
                     <ul class="coverage-list">
                         <li class="coverage-item"><svg class="help-icon">
                                 <use href="#icon-check"></use>
-                            </svg> <strong>Incêndio/Raio/Explosão:</strong> Cobertura do custo de reconstrução.</li>
+                            </svg> <strong>Estrutural:</strong> Incêndio, Raio e Explosão.</li>
                         <li class="coverage-item"><svg class="help-icon">
                                 <use href="#icon-check"></use>
-                            </svg> <strong>Danos Elétricos:</strong> Danos em instalações e aparelhos.</li>
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>Assistência 24h:</strong> Chaveiro, encanador e eletricista.</li>
+                            </svg> <strong>Danos Elétricos:</strong> Instalações e aparelhos.</li>
                     </ul>
+                </div>
+
+                <h2>Especialista</h2>
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179?text=Olá,%20Bruna!%20Dúvida%20sobre%20Seguro%20Incêndio."
+                        target="_blank" class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Incêndio</span>
+                            <span class="card-name">Bruna Lucena</span>
+                        </div>
+                    </a>
                 </div>
             </section>
 
-            <!-- Seguro Condomínio -->
+            <!-- Seguro Condomínio/Conteúdo -->
             <section id="condominio" class="doc-section">
                 <h1><svg class="help-icon" style="width: 32px; height: 32px;">
                         <use href="#icon-building"></use>
                     </svg> Seguro Condomínio</h1>
-                <p>Proteção patrimonial completa e obrigatória por lei (Código Civil Art. 1.346).</p>
+                <p>Proteção patrimonial completa e obrigatória por lei.</p>
 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button class="coverage-toggle-btn" onclick="toggleCoverage('cond-coverage')">
-                        <svg class="help-icon">
-                            <use href="#icon-folder"></use>
-                        </svg>
-                        <span>Ver Coberturas Técnicas</span>
-                    </button>
-                    <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20a%20Ana%20Carolina%20Minato%20sobre%20Seguro%20Condomínio"
-                        target="_blank" class="contact-btn">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Falar com Ana Minato (Condomínio)
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179?text=Olá,%20Ana!%20Dúvida%20sobre%20Condomínio/Conteúdo."
+                        target="_blank" class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Especialista</span>
+                            <span class="card-name">Ana Carolina Minato</span>
+                        </div>
                     </a>
-                </div>
-
-                <div id="cond-coverage" class="coverage-details">
-                    <ul class="coverage-list">
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>RC Condomínio:</strong> Danos causados a terceiros.</li>
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>RC Síndico:</strong> Erros de gestão administrativa.</li>
-                    </ul>
                 </div>
             </section>
 
-            <!-- Seguro Conteúdo -->
             <section id="conteudo" class="doc-section">
                 <h1><svg class="help-icon" style="width: 32px; height: 32px;">
                         <use href="#icon-package"></use>
                     </svg> Seguro Conteúdo</h1>
                 <p>Proteção dos bens móveis e eletrônicos do inquilino dentro do imóvel locado.</p>
 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <button class="coverage-toggle-btn" onclick="toggleCoverage('cont-coverage')">
-                        <svg class="help-icon">
-                            <use href="#icon-folder"></use>
-                        </svg>
-                        <span>Itens Cobertos</span>
-                    </button>
-                    <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20a%20Ana%20Carolina%20Minato%20sobre%20Seguro%20Conteúdo"
-                        target="_blank" class="contact-btn">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Falar com Ana Minato (Conteúdo)
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179?text=Olá,%20Ana!%20Dúvida%20sobre%20Seguro%20Conteúdo."
+                        target="_blank" class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Especialista</span>
+                            <span class="card-name">Ana Carolina Minato</span>
+                        </div>
                     </a>
-                </div>
-
-                <div id="cont-coverage" class="coverage-details">
-                    <ul class="coverage-list">
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>Danos Elétricos:</strong> Proteção para eletrodomésticos e eletrônicos.</li>
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>Roubo e Furto:</strong> Bens móveis (exceto dinheiro e joias).</li>
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>Vidros/Espelhos:</strong> Quebra acidental de vidros do inquilino.</li>
-                    </ul>
                 </div>
             </section>
 
-            <!-- Sinistros -->
+            <!-- Sinistros Restored -->
             <section id="sinistro-fianca" class="doc-section">
                 <h1><svg class="help-icon" style="width: 32px; height: 32px; color: var(--accent);">
                         <use href="#icon-alert-triangle"></use>
-                    </svg> Sinistros</h1>
-                <p>Processos de aviso e acompanhamento de sinistros para Fiança e Ramos Gerais.</p>
-
-                <div class="support-buttons-container">
-                    <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20a%20Bruna%20Araujo%20sobre%20Sinistro%20Fiança"
-                        target="_blank" class="contact-btn">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Falar com Bruna Araujo (Fiança)
-                    </a>
-                    <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20a%20Manuela%20Cardoso%20sobre%20Sinistros%20Gerais"
-                        target="_blank" class="contact-btn" style="background-color: var(--primary-light);">
-                        <svg class="help-icon">
-                            <use href="#icon-message"></use>
-                        </svg>
-                        Falar com Manuela Cardoso (Gerais)
+                    </svg> Sinistro Fiança</h1>
+                <p>Acionamento de garantias por inadimplência de aluguel e encargos.</p>
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179?text=Olá,%20Bruna!%20Sinistro%20Fiança." target="_blank"
+                        class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Fiança</span>
+                            <span class="card-name">Bruna Araújo</span>
+                        </div>
                     </a>
                 </div>
             </section>
 
-            <!-- Cancelamento e Resgate -->
+            <section id="sinistro-gerais" class="doc-section">
+                <h1><svg class="help-icon" style="width: 32px; height: 32px; color: var(--accent);">
+                        <use href="#icon-alert-triangle"></use>
+                    </svg> Sinistros Gerais</h1>
+                <p>Acionamento de seguros patrimoniais (Incêndio, Condomínio).</p>
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179?text=Olá,%20Manuela!%20Sinistros%20Gerais." target="_blank"
+                        class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Gerais</span>
+                            <span class="card-name">Manuela Cardoso</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Cancelamento -->
             <section id="resgate" class="doc-section">
                 <h1><svg class="help-icon" style="width: 32px; height: 32px;">
                         <use href="#icon-refresh"></use>
                     </svg> Cancelamento e Resgate</h1>
-                <p>Trâmites para encerramento de apólices e solicitações de resgate de Títulos de Capitalização.</p>
-
-                <div class="info-box">
-                    <strong>Processo de Resgate</strong>
-                    Para Títulos de Capitalização, o resgate ocorre ao fim do contrato de locação, mediante quitação de
-                    todos os débitos ou autorização do proprietário.
+                <p>Encerramento de apólices e solicitações de resgate de Capitalização.</p>
+                <div class="contact-grid">
+                    <a href="https://wa.me/48988644179?text=Olá,%20Maria%20Eduarda!%20Cancelamento/Resgate."
+                        target="_blank" class="contact-card">
+                        <div class="icon-circle"><svg>
+                                <use href="#icon-message"></use>
+                            </svg></div>
+                        <div class="card-info">
+                            <span class="card-tag">Atendimento</span>
+                            <span class="card-name">Maria Eduarda</span>
+                        </div>
+                    </a>
                 </div>
-
-                <a href="https://wa.me/48988644179?text=Olá,%20gostaria%20de%20falar%20com%20a%20Maria%20Eduarda%20sobre%20Cancelamento%20ou%20Resgate"
-                    target="_blank" class="contact-btn">
-                    <svg class="help-icon">
-                        <use href="#icon-message"></use>
-                    </svg>
-                    Falar com Maria Eduarda (Cancelamento/Resgate)
-                </a>
             </section>
         </main>
     </div>
 
-    <script src="ajuda.js?v=2"></script>
+    <script src="ajuda.js?v=3"></script>
 </body>
 
 </html>

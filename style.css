@@ -876,3 +876,104 @@ main {
     opacity: 0.3;
     cursor: not-allowed;
 }
+/* --- REDESIGN 2026: COMPONENTES DE CONTATO --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-top: 2rem;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.contact-card:hover {
+    border-color: #25D366;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(37, 211, 102, 0.15);
+}
+
+.contact-card .icon-circle {
+    width: 48px;
+    height: 48px;
+    background: #f0fdf4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.contact-card svg {
+    width: 24px;
+    height: 24px;
+    color: #25D366;
+}
+
+.contact-card .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contact-card .card-name {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1rem;
+}
+
+.contact-card .card-tag {
+    font-size: 0.7rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Modificador para o Primary Color */
+.contact-card.special {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+.contact-card.special .card-name { color: white; }
+.contact-card.special .card-tag { color: rgba(255,255,255,0.7); }
+.contact-card.special .icon-circle { background: rgba(255,255,255,0.15); }
+.contact-card.special svg { color: white; }
+
+/* Destaque Nav Ajuda */
+.nav-help-highlight {
+    background: var(--accent);
+    color: white !important;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+/* Barra de Suporte Homepage */
+.support-bar {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+}
+
+.support-bar h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
