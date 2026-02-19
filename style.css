@@ -1,15 +1,33 @@
 :root {
-    --primary: #5B2D8B;
-    --primary-dark: #3E1F66;
-    --primary-light: #8E6BBE;
-    --accent: #6F4BA8;
-    --bg-light: #F8F9FA;
+    --primary: #7C3AED;
+    /* Vibrant Purple */
+    --primary-dark: #5B21B6;
+    --primary-light: #A78BFA;
+    --accent: #8B5CF6;
+    --bg-light: #F9FAFB;
     --surface: #FFFFFF;
-    --text: #2F184E;
-    --text-muted: #6F4BA8;
+    --text: #1F2937;
+    --text-muted: #6B7280;
     --glass: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(91, 45, 139, 0.1);
-    --shadow: 0 8px 32px 0 rgba(91, 45, 139, 0.1);
+    --glass-border: rgba(124, 58, 237, 0.1);
+    --shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.08);
+}
+
+.help-icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+.coverage-item .help-icon {
+    width: 16px;
+    height: 16px;
+    color: #10B981;
+    /* Green for checkmarks */
 }
 
 * {
