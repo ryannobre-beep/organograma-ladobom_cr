@@ -11,8 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load Data from Coda Proxy with cache-buster
     fetch(`/api/data?t=${Date.now()}`)
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        .then(async response => {
+            if (!response.ok) {
+                const errBody = await response.json().catch(() => ({}));
+                throw new Error(errBody.error || `HTTP error! status: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {

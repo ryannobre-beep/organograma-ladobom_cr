@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadDynamicContent() {
         try {
             const response = await fetch('/api/data?type=especialistas');
+            if (!response.ok) {
+                const errBody = await response.json().catch(() => ({}));
+                throw new Error(errBody.error || `HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
 
             if (data && Array.isArray(data)) {
@@ -64,6 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- BUSCA FAQ ---
             const faqResponse = await fetch('/api/data?type=faq');
+            if (!faqResponse.ok) {
+                const errBody = await faqResponse.json().catch(() => ({}));
+                throw new Error(errBody.error || `HTTP error! status: ${faqResponse.status}`);
+            }
             const faqData = await faqResponse.json();
 
             if (faqData && Array.isArray(faqData)) {
