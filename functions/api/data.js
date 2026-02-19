@@ -5,7 +5,7 @@ export async function onRequestGet(context) {
 
     const CODA_API_KEY = env.CODA_API_KEY;
     const CODA_DOC_ID = env.CODA_DOC_ID || "NqBfudo5pw";
-    const CODA_EQUIPE_TABLE_ID = env.CODA_EQUIPE_TABLE_ID || "grid-M-rY9C7_6l";
+    const CODA_EQUIPE_TABLE_ID = env.CODA_EQUIPE_TABLE_ID || "grid-BsCb45xbdh";
     const CODA_FAQ_TABLE_ID = env.CODA_FAQ_TABLE_ID || "tu8U40Vz";
     const CODA_SPEC_TABLE_ID = env.CODA_SPEC_TABLE_ID || "tuR341lN";
 
@@ -48,7 +48,8 @@ export async function onRequestGet(context) {
                     error: `A tabela para '${type}' ainda não foi configurada no Cloudflare.`
                 }), { headers: corsHeaders });
             }
-            throw new Error(`Erro ao buscar colunas (${type})`);
+            const errorText = await colsResponse.text();
+            throw new Error(`Erro Coda (Colunas ${type}): ${colsResponse.status} - ${errorText.length > 200 ? errorText.substring(0, 200) + '...' : errorText}`);
         }
 
         const colsData = await colsResponse.json();
@@ -60,7 +61,10 @@ export async function onRequestGet(context) {
             headers: { "Authorization": `Bearer ${CODA_API_KEY}` }
         });
 
-        if (!response.ok) throw new Error("Erro ao buscar dados do Coda");
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Erro Coda (Linhas ${type}): ${response.status} ${errorText.substring(0, 100)}`);
+        }
         const rawData = await response.json();
 
         // 3. Transformação Baseada no Tipo
