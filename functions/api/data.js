@@ -6,8 +6,8 @@ export async function onRequestGet(context) {
     const CODA_API_KEY = env.CODA_API_KEY;
     const CODA_DOC_ID = env.CODA_DOC_ID || "NqBfudo5pw";
     const CODA_EQUIPE_TABLE_ID = env.CODA_EQUIPE_TABLE_ID || "grid-BsCb45xbdh";
-    const CODA_FAQ_TABLE_ID = env.CODA_FAQ_TABLE_ID || "tu8U40Vz";
-    const CODA_SPEC_TABLE_ID = env.CODA_SPEC_TABLE_ID || "tuR341lN";
+    const CODA_FAQ_TABLE_ID = env.CODA_FAQ_TABLE_ID || "grid-ekHg8U40Vz";
+    const CODA_SPEC_TABLE_ID = env.CODA_SPEC_TABLE_ID || "grid-qLsLR341lN";
 
     // IDs das Tabelas (O usuário precisará criar estas novas no Coda e atualizar aqui se mudarem)
     const TABLE_MAP = {
