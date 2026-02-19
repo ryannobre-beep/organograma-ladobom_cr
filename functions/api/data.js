@@ -4,13 +4,16 @@ export async function onRequestGet(context) {
     const type = url.searchParams.get("type") || "equipe"; // equipe, faq, ou especialistas
 
     const CODA_API_KEY = env.CODA_API_KEY;
-    const DOC_ID = env.CODA_DOC_ID || "NqBfudo5pw";
+    const CODA_DOC_ID = env.CODA_DOC_ID || "NqBfudo5pw";
+    const CODA_EQUIPE_TABLE_ID = env.CODA_EQUIPE_TABLE_ID || "grid-M-rY9C7_6l";
+    const CODA_FAQ_TABLE_ID = env.CODA_FAQ_TABLE_ID || "tu8U40Vz";
+    const CODA_SPEC_TABLE_ID = env.CODA_SPEC_TABLE_ID || "tuR341lN";
 
     // IDs das Tabelas (O usuário precisará criar estas novas no Coda e atualizar aqui se mudarem)
     const TABLE_MAP = {
-        "equipe": "grid-BsCb45xbdh",
-        "faq": env.CODA_FAQ_TABLE_ID || "grid-faq-placeholder", // Placeholder para o usuário preencher
-        "especialistas": env.CODA_SPEC_TABLE_ID || "grid-spec-placeholder"
+        "equipe": CODA_EQUIPE_TABLE_ID,
+        "faq": CODA_FAQ_TABLE_ID,
+        "especialistas": CODA_SPEC_TABLE_ID
     };
 
     const TABLE_ID = TABLE_MAP[type];
