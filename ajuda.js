@@ -8,18 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarLinks.forEach(link => {
         link.addEventListener('click', () => {
             const targetId = link.getAttribute('data-target');
-
-            // Atualiza sidebar
-            sidebarLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-
-            // Atualiza conteúdo
-            sections.forEach(section => {
-                section.classList.remove('active');
-                if (section.id === targetId) {
-                    section.classList.add('active');
-                }
-            });
+            activateSection(targetId);
 
             // Scroll para o topo do conteúdo no mobile
             if (window.innerWidth <= 768) {
@@ -34,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const item = q.parentElement;
             item.classList.toggle('open');
             const span = q.querySelector('span');
-            span.textContent = item.classList.contains('open') ? '-' : '+';
+            if (span) {
+                span.textContent = item.classList.contains('open') ? '-' : '+';
+            }
         });
     });
 
@@ -42,15 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
 
-        if (term.length < 2) {
-            // Se busca curta, volta para a intro ou mantém a última
-            return;
-        }
+        if (term.length < 2) return;
 
         sections.forEach(section => {
             const text = section.innerText.toLowerCase();
             if (text.includes(term)) {
-                // Ativa a primeira seção que encontrar o termo
                 activateSection(section.id);
             }
         });
@@ -66,4 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetSection) targetSection.classList.add('active');
         if (targetLink) targetLink.classList.add('active');
     }
+
+    // Função global para alternar coberturas
+    window.toggleCoverage = function (id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.toggle('open');
+        const btn = el.previousElementSibling;
+        if (btn && btn.classList.contains('coverage-toggle-btn')) {
+            btn.textContent = el.classList.contains('open') ? '📂 Fechar Detalhes' : '📂 Ver Coberturas Detalhadas';
+        }
+    };
 });
