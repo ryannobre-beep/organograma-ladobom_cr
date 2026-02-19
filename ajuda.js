@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
         q.addEventListener('click', () => {
             const item = q.parentElement;
             item.classList.toggle('open');
-            const span = q.querySelector('span');
-            if (span) {
-                span.textContent = item.classList.contains('open') ? '-' : '+';
+            const icon = q.querySelector('.toggle-icon use');
+            if (icon) {
+                icon.setAttribute('href', item.classList.contains('open') ? '#icon-minus' : '#icon-plus');
             }
         });
     });
@@ -61,8 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.toggle('open');
         const btn = el.previousElementSibling;
         if (btn && btn.classList.contains('coverage-toggle-btn')) {
-            btn.textContent = el.classList.contains('open') ? '📂 Fechar Detalhes' : '📂 Ver Coberturas Detalhadas';
+            const icon = btn.querySelector('use');
+            const span = btn.querySelector('span');
+            if (icon) {
+                icon.setAttribute('href', el.classList.contains('open') ? '#icon-folder-open' : '#icon-folder');
+            }
+            if (span) {
+                span.textContent = el.classList.contains('open') ? 'Fechar Detalhes' : 'Ver Coberturas Detalhadas';
+            }
         }
     };
 });
-// Trigger deploy: Thu Feb 19 13:45:40 -03 2026

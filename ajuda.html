@@ -71,7 +71,7 @@
             <line x1="12" y1="9" x2="12" y2="13"></line>
             <line x1="12" y1="17" x2="12.01" y2="17"></line>
         </symbol>
-        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
         </symbol>
@@ -80,6 +80,25 @@
             <path
                 d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z">
             </path>
+        </symbol>
+        <symbol id="icon-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </symbol>
+        <symbol id="icon-folder-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 10v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-9l-2-3H4a2 2 0 0 0-2 2z"></path>
+            <path d="M12 10v6"></path>
+            <path d="M9 13h6"></path>
+        </symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </symbol>
+        <symbol id="icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
         </symbol>
     </svg>
 
@@ -128,16 +147,11 @@
                     <use href="#icon-package"></use>
                 </svg>Seguro Conteúdo</a>
 
-            <div class="sidebar-nav-title">Vida e Saúde</div>
-            <a class="sidebar-link" data-target="prestamista"><svg class="help-icon">
-                    <use href="#icon-heart"></use>
-                </svg>Prestamista</a>
-
             <div class="sidebar-nav-title">Sinistro</div>
-            <a class="sidebar-link" data-target="sinistro-fianca"><svg class="help-icon">
+            <a class="sidebar-link" data-target="sinistro-fianca"><svg class="help-icon" style="color: var(--accent);">
                     <use href="#icon-alert-triangle"></use>
                 </svg>Fiança</a>
-            <a class="sidebar-link" data-target="sinistro-gerais"><svg class="help-icon">
+            <a class="sidebar-link" data-target="sinistro-gerais"><svg class="help-icon" style="color: var(--accent);">
                     <use href="#icon-alert-triangle"></use>
                 </svg>Gerais</a>
         </aside>
@@ -167,10 +181,10 @@
                     para o inquilino.</p>
 
                 <button class="coverage-toggle-btn" onclick="toggleCoverage('fianca-coverage')">
-                    <svg class="help-icon"
-                        style="margin-right: 4px; border: 1px solid white; border-radius: 4px; padding: 2px;">
-                        <use href="#icon-check"></use>
-                    </svg> Ver Coberturas Detalhadas
+                    <svg class="help-icon" style="margin-right: 8px;">
+                        <use href="#icon-folder"></use>
+                    </svg>
+                    <span>Ver Coberturas Detalhadas</span>
                 </button>
                 <div id="fianca-coverage" class="coverage-details">
                     <ul class="coverage-list">
@@ -195,7 +209,9 @@
                 <div class="faq-section">
                     <h2>FAQ Seguro Fiança</h2>
                     <div class="faq-item">
-                        <div class="faq-question">Precisa de fiador ou caução? <span>+</span></div>
+                        <div class="faq-question">Precisa de fiador ou caução? <svg class="help-icon toggle-icon">
+                                <use href="#icon-plus"></use>
+                            </svg></div>
                         <div class="faq-answer">Não. O Seguro Fiança substitui totalmente qualquer outra forma de
                             garantia, sendo a opção mais segura do mercado.</div>
                     </div>
@@ -211,10 +227,10 @@
                     assistência residencial.</p>
 
                 <button class="coverage-toggle-btn" onclick="toggleCoverage('inc-coverage')">
-                    <svg class="help-icon"
-                        style="margin-right: 4px; border: 1px solid white; border-radius: 4px; padding: 2px;">
-                        <use href="#icon-check"></use>
-                    </svg> Ver Coberturas Técnicas
+                    <svg class="help-icon" style="margin-right: 8px;">
+                        <use href="#icon-folder"></use>
+                    </svg>
+                    <span>Ver Coberturas Técnicas</span>
                 </button>
                 <div id="inc-coverage" class="coverage-details">
                     <ul class="coverage-list">
@@ -226,23 +242,8 @@
                             </svg> <strong>Danos Elétricos:</strong> Danos em instalações e aparelhos.</li>
                         <li class="coverage-item"><svg class="help-icon">
                                 <use href="#icon-check"></use>
-                            </svg> <strong>Vendaval/Granizo:</strong> Danos ao imóvel por ventos fortes.</li>
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>RC Familiar:</strong> Danos causados a terceiros pelo inquilino.</li>
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
                             </svg> <strong>Assistência 24h:</strong> Chaveiro, encanador e eletricista.</li>
                     </ul>
-                </div>
-
-                <div class="faq-section">
-                    <h2>FAQ Seguro Incêndio</h2>
-                    <div class="faq-item">
-                        <div class="faq-question">Quem deve pagar o seguro incêndio? <span>+</span></div>
-                        <div class="faq-answer">De acordo com a Lei do Inquilinato, o pagamento é responsabilidade do
-                            locatário, salvo disposição contrária no contrato de locação.</div>
-                    </div>
                 </div>
             </section>
 
@@ -255,10 +256,10 @@
                     profunda.</p>
 
                 <button class="coverage-toggle-btn" onclick="toggleCoverage('cap-coverage')">
-                    <svg class="help-icon"
-                        style="margin-right: 4px; border: 1px solid white; border-radius: 4px; padding: 2px;">
-                        <use href="#icon-check"></use>
-                    </svg> Benefícios Detalhados
+                    <svg class="help-icon" style="margin-right: 8px;">
+                        <use href="#icon-folder"></use>
+                    </svg>
+                    <span>Benefícios Detalhados</span>
                 </button>
                 <div id="cap-coverage" class="coverage-details">
                     <ul class="coverage-list">
@@ -283,10 +284,10 @@
                 <p>Proteção patrimonial completa e obrigatória por lei (Código Civil Art. 1.346).</p>
 
                 <button class="coverage-toggle-btn" onclick="toggleCoverage('cond-coverage')">
-                    <svg class="help-icon"
-                        style="margin-right: 4px; border: 1px solid white; border-radius: 4px; padding: 2px;">
-                        <use href="#icon-check"></use>
-                    </svg> Ver Coberturas Técnicas
+                    <svg class="help-icon" style="margin-right: 8px;">
+                        <use href="#icon-folder"></use>
+                    </svg>
+                    <span>Ver Coberturas Técnicas</span>
                 </button>
                 <div id="cond-coverage" class="coverage-details">
                     <ul class="coverage-list">
@@ -303,59 +304,25 @@
                 </div>
             </section>
 
-            <!-- Seguro Conteúdo -->
-            <section id="conteudo" class="doc-section">
-                <h1><svg class="help-icon" style="width: 32px; height: 32px;">
-                        <use href="#icon-package"></use>
-                    </svg> Seguro Conteúdo</h1>
-                <p>Proteção dos bens móveis, equipamentos e sistemas localizados dentro do condomínio.</p>
-
-                <button class="coverage-toggle-btn" onclick="toggleCoverage('cont-coverage')">
-                    <svg class="help-icon"
-                        style="margin-right: 4px; border: 1px solid white; border-radius: 4px; padding: 2px;">
-                        <use href="#icon-check"></use>
-                    </svg> Itens Cobertos
-                </button>
-                <div id="cont-coverage" class="coverage-details">
-                    <ul class="coverage-list">
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>Equipamentos:</strong> Elevadores, bombas e geradores.</li>
-                        <li class="coverage-item"><svg class="help-icon">
-                                <use href="#icon-check"></use>
-                            </svg> <strong>Móveis:</strong> Áreas comuns e salões de festas.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Prestamista -->
-            <section id="prestamista" class="doc-section">
-                <h1><svg class="help-icon" style="width: 32px; height: 32px;">
-                        <use href="#icon-heart"></use>
-                    </svg> Seguro Prestamista</h1>
-                <p>Garante a quitação de compromissos financeiros em casos de imprevistos graves (morte ou invalidez).
-                </p>
-            </section>
-
             <!-- Sinistro Fiança -->
             <section id="sinistro-fianca" class="doc-section">
-                <h1><svg class="help-icon" style="width: 32px; height: 32px;">
+                <h1><svg class="help-icon" style="width: 32px; height: 32px; color: var(--accent);">
                         <use href="#icon-alert-triangle"></use>
                     </svg> Sinistro Fiança (WIP)</h1>
                 <p>Orientações para o acionamento de garantias locatícias em caso de inadimplência.</p>
                 <div class="info-box">
                     <strong>Página em Construção</strong>
-                    O fluxo técnico de sinistro para o produto Fiança está sendo mapeado para este portal. Utilize os
-                    contatos do organograma para casos urgentes.
+                    O fluxo técnico de sinistro para o produto Fiança está sendo mapeado. Utilize o organograma para
+                    contatos urgentes.
                 </div>
             </section>
 
             <!-- Sinistro Gerais -->
             <section id="sinistro-gerais" class="doc-section">
-                <h1><svg class="help-icon" style="width: 32px; height: 32px;">
+                <h1><svg class="help-icon" style="width: 32px; height: 32px; color: var(--accent);">
                         <use href="#icon-alert-triangle"></use>
                     </svg> Sinistros Gerais (WIP)</h1>
-                <p>Processos de aviso de sinistro para seguros patrimoniais (Incêndio, Condomínio, Conteúdo).</p>
+                <p>Processos de aviso de sinistro para seguros patrimoniais.</p>
                 <div class="info-box">
                     <strong>Página em Construção</strong>
                     As orientações para sinistros patrimoniais estarão disponíveis em breve.

@@ -1,33 +1,37 @@
 :root {
-    --primary: #7C3AED;
-    /* Vibrant Purple */
-    --primary-dark: #5B21B6;
-    --primary-light: #A78BFA;
-    --accent: #8B5CF6;
-    --bg-light: #F9FAFB;
+    --primary: #502896;
+    /* Logo Purple */
+    --primary-dark: #321664;
+    --primary-light: #7E57C2;
+    --accent: #F39C12;
+    /* Institutional Orange */
+    --accent-hover: #E67E22;
+    --bg-light: #F8FAFC;
     --surface: #FFFFFF;
-    --text: #1F2937;
-    --text-muted: #6B7280;
+    --text: #1E293B;
+    --text-muted: #64748B;
     --glass: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(124, 58, 237, 0.1);
-    --shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.08);
+    --glass-border: rgba(80, 40, 150, 0.1);
+    --shadow: 0 8px 32px 0 rgba(80, 40, 150, 0.1);
 }
 
 .help-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     vertical-align: middle;
     margin-right: 8px;
     stroke: currentColor;
     fill: none;
-    stroke-width: 2;
+    stroke-width: 2.5;
+    /* Slightly bolder for better visibility */
 }
 
 .coverage-item .help-icon {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     color: #10B981;
-    /* Green for checkmarks */
+    /* Success Green */
+    margin-right: 10px;
 }
 
 * {
@@ -169,15 +173,19 @@ header {
 }
 
 .info-box {
-    background: #f0f4f8;
-    border-left: 4px solid var(--primary);
+    background: #FFFBF0;
+    /* Light Orange Background */
+    border-left: 4px solid var(--accent);
+    /* Orange Border */
     padding: 1.25rem;
     border-radius: 8px;
     margin: 2rem 0;
+    box-shadow: 0 2px 4px rgba(243, 156, 18, 0.05);
 }
 
 .coverage-toggle-btn {
-    background: var(--primary-light);
+    background: var(--primary);
+    /* Logo Purple */
     color: white;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -189,13 +197,18 @@ header {
     gap: 8px;
     margin: 1.5rem 0;
     transition: all 0.2s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(80, 40, 150, 0.1);
 }
 
 .coverage-toggle-btn:hover {
-    background: var(--primary);
+    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(80, 40, 150, 0.2);
+}
+
+.coverage-toggle-btn .help-icon {
+    margin: 0;
+    stroke-width: 3;
 }
 
 .coverage-details {
