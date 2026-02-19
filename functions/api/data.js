@@ -95,7 +95,11 @@ function transformEquipe(items, colMap) {
             role: getVal("cargo") || "",
             function: getVal("função") || "",
             email: getVal("email") || "",
-            phone: String(getVal("telefone") || "").trim()
+            phone: String(getVal("telefone") || "").trim(),
+            vacationStart: getVal("férias início") || "",
+            vacationEnd: getVal("férias fim") || "",
+            substituteId: getVal("substituto") || "",
+            notes: getVal("notas") || ""
         };
         const deptName = getVal("departamento") || "Geral";
         if (!deptMap[deptName]) {
