@@ -33,7 +33,8 @@ export async function onRequestGet(context) {
         const colsData = await colsResponse.json();
         const colMap = {};
         colsData.items.forEach(c => {
-            colMap[c.name] = c.id;
+            // Mapeia tanto o nome normal quanto o nome limpo em minúsculas
+            colMap[c.name.trim().toLowerCase()] = c.id;
         });
 
         // 2. Busca as linhas da tabela
@@ -88,7 +89,7 @@ function transformCodaToOrgChart(items, colMap) {
 
         // Função auxiliar para pegar valor com segurança pelo nome da coluna
         const getVal = (name) => {
-            const id = colMap[name];
+            const id = colMap[name.trim().toLowerCase()];
             return id ? values[id] : undefined;
         };
 
@@ -101,6 +102,7 @@ function transformCodaToOrgChart(items, colMap) {
             vacationStart: getVal("Férias Início") || "",
             vacationEnd: getVal("Férias Fim") || "",
             substituteId: getVal("Substituto") || "",
+            phone: String(getVal("Telefone") || getVal("Phone") || "").trim(),
             notes: getVal("Notas") || ""
         };
 

@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let companyData = null;
     let currentCategory = 'internal';
 
-    fetch('/api/data')
+    // Load Data from Coda Proxy with cache-buster
+    fetch(`/api/data?t=${Date.now()}`)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return response.json();
@@ -154,6 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const card = document.createElement('div');
                     card.className = `card ${isOnVacation ? 'card-vacation' : ''}`;
+
+                    const showSubstitute = (isOnVacation || isNoticePeriod) && member.substituteId;
+                    const substituteName = showSubstitute ? getMemberNameById(member.substituteId) : '';
+
                     card.innerHTML = `
                         ${isOnVacation ? '<span class="vacation-badge">Em Férias</span>' : ''}
                         <div class="card-header">
@@ -163,10 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div class="card-body">
                             <p>${member.function ? member.function.substring(0, 80) + '...' : 'Descrição em fase de mapeamento.'}</p>
-                            ${isOnVacation && member.substituteId ? `<div class="substitute-info">Substituído(a) por: <span class="substitute-name">${getMemberNameById(member.substituteId)}</span></div>` : ''}
+                            ${showSubstitute ? `<div class="substitute-info">Substituído(a) por: <span class="substitute-name">${substituteName}</span></div>` : ''}
                         </div>
                         <div class="card-footer">
-                            ${member.email ? `<a href="mailto:${member.email}" class="email-btn">📧 ${member.email}</a>` : '<span class="text-muted">Sem e-mail</span>'}
+                            ${member.email ? `<a href="mailto:${member.email}" class="email-btn" title="${member.email}">📧 E-mail</a>` : ''}
+                            ${member.phone ? `<a href="tel:${member.phone.replace(/\D/g, '')}" class="phone-btn" title="${member.phone}">📞 Telefone</a>` : ''}
+                            ${!member.email && !member.phone ? '<span class="text-muted">Sem contato</span>' : ''}
                         </div>
                     `;
                     card.addEventListener('click', (e) => {
@@ -211,10 +218,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             ` : ''}
 
-            <div style="display: flex; gap: 1rem; margin-top: 2.5rem;">
+            <div style="display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap;">
                 ${member.email ? `
-                    <a href="mailto:${member.email}" style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; flex: 1; text-align: center; transition: background 0.2s;">
+                    <a href="mailto:${member.email}" style="background: var(--primary); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; flex: 1; min-width: 150px; text-align: center; transition: background 0.2s;">
                         Enviar E-mail
+                    </a>
+                ` : ''}
+                ${member.phone ? `
+                    <a href="tel:${member.phone.replace(/\D/g, '')}" style="background: #25D366; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; flex: 1; min-width: 150px; text-align: center; transition: background 0.2s;">
+                        Ligar / WhatsApp
                     </a>
                 ` : ''}
             </div>

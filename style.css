@@ -204,16 +204,43 @@ main {
     border-top: 1px solid #EDF2F7;
     margin-top: 1.5rem;
     padding-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.email-btn, .phone-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+    gap: 6px;
 }
 
 .email-btn {
+    background: #f0f4f8;
     color: var(--primary);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+}
+
+.email-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.phone-btn {
+    background: #e6fffa;
+    color: #2c7a7b;
+}
+
+.phone-btn:hover {
+    background: #38b2ac;
+    color: white;
 }
 
 .modal {
