@@ -135,8 +135,8 @@ function transformEspecialistas(items, colMap) {
             secao_id: getVal("seção id"), // ex: fianca, incendio
             nome: getVal("nome"),
             tag: getVal("tag"), // ex: Cotação, Contratação
-            whatsapp: getVal("whatsapp"),
-            mensagem: getVal("mensagem personalizada")
+            email: getVal("email") || "equipe@ladobomseguros.com.br",
+            assunto: getVal("assunto") || "Contato Central de Ajuda"
         };
     });
 }

@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const grid = document.getElementById(`grid-${sectionId}`);
                     if (grid) {
                         const html = specialistsBySection[sectionId].map(spec => `
-                            <a href="https://wa.me/${spec.whatsapp}?text=${encodeURIComponent(spec.mensagem || 'Olá!')}" target="_blank" class="contact-card">
-                                <div class="icon-circle"><svg><use href="#icon-message"></use></svg></div>
+                            <a href="mailto:${spec.email}?subject=${encodeURIComponent(spec.assunto || 'Contato Profissional')}" class="contact-card">
+                                <div class="icon-circle"><svg><use href="#icon-mail"></use></svg></div>
                                 <div class="card-info">
                                     <span class="card-tag">${spec.tag}</span>
                                     <span class="card-name">${spec.nome}</span>
