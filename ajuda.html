@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Ajuda | Time Lado Bom</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para a Central de Ajuda para garantir que pareça com a docs.ladobom.com */
+        .help-container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .help-sidebar {
+            width: 300px;
+            background: #f8fafc;
+            border-right: 1px solid #edf2f7;
+            padding: 2rem;
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+
+        .help-content {
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: 900px;
+        }
+
+        .sidebar-nav-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .sidebar-nav-title:first-child {
+            margin-top: 0;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .doc-section {
+            display: none;
+        }
+
+        .doc-section.active {
+            display: block;
+        }
+
+        .doc-section h1 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-section h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 0.5rem;
+        }
+
+        .doc-section p {
+            line-height: 1.7;
+            color: #4a5568;
+            margin-bottom: 1.2rem;
+        }
+
+        .info-box {
+            background: #f0f4f8;
+            border-left: 4px solid var(--primary);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .info-box strong {
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #edf2f7;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            background: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            display: none;
+            background: #fff;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .nav-header {
+            display: flex;
+            gap: 2rem;
+            margin-right: 2rem;
+        }
+
+        .nav-header a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-header a:hover, .nav-header a.active {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .help-container {
+                flex-direction: column;
+            }
+            .help-sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                padding: 1rem;
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+            }
+            .sidebar-nav-title {
+                display: none;
+            }
+            .help-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="lado-bom-seguros-documentacao-logo.svg" alt="Lado Bom Seguros Logo">
+            <div class="title-group">
+                <h1>Central de Ajuda</h1>
+                <p>Vertical CR (Crédito Real)</p>
+            </div>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <nav class="nav-header">
+                <a href="index.html">Organograma</a>
+                <a href="ajuda.html" class="active">Ajuda</a>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="help-search" placeholder="O que você procura?">
+            </div>
+        </div>
+    </header>
+
+    <div class="help-container">
+        <aside class="help-sidebar">
+            <div class="sidebar-nav-title">Início</div>
+            <a class="sidebar-link active" data-target="intro">Introdução à Parceria</a>
+            <a class="sidebar-link" data-target="organograma">Guia do Organograma</a>
+            
+            <div class="sidebar-nav-title">Produtos</div>
+            <a class="sidebar-link" data-target="fianca">Seguro Fiança</a>
+            <a class="sidebar-link" data-target="capitalizacao">Capitalização</a>
+            <a class="sidebar-link" data-target="condominio">Seguro Condomínio</a>
+            <a class="sidebar-link" data-target="conteudo">Seguro Conteúdo</a>
+            <a class="sidebar-link" data-target="prestamista">Prestamista</a>
+            
+            <div class="sidebar-nav-title">Suporte</div>
+            <a class="sidebar-link" data-target="duvidas">Dúvidas e Atualizações</a>
+        </aside>
+
+        <main class="help-content">
+            <!-- Introdução -->
+            <section id="intro" class="doc-section active">
+                <h1>Introdução à Parceria</h1>
+                <p>Bem-vindo à Central de Ajuda da Vertical CR. Esta parceria entre a <strong>Lado Bom Seguros</strong> e o time de Crédito Real visa otimizar a gestão de seguros e garantias locatícias.</p>
+                <div class="info-box">
+                    <strong>O que é a Vertical CR?</strong>
+                    É a operação dedicada a atender as demandas de seguros vindas da Crédito Real, garantindo agilidade, suporte técnico e as melhores taxas do mercado.
+                </div>
+                <h2>Objetivo deste Portal</h2>
+                <p>Este sistema foi criado para dar transparência ao time, permitindo que todos saibam quem são os responsáveis por cada área, como entrar em contato e como os processos de seguros funcionam.</p>
+            </section>
+
+            <!-- Guia do Organograma -->
+            <section id="organograma" class="doc-section">
+                <h1>Guia do Organograma</h1>
+                <p>O Organograma Dinâmico é sua ferramenta principal para localização de colaboradores e funções.</p>
+                <h2>Busca Inteligente</h2>
+                <p>Você pode buscar por nome, cargo, função (ex: "comercial", "sinistro") ou departamento. O filtro é instantâneo.</p>
+                <h2>Aviso de Férias</h2>
+                <p>Quando um colaborador estiver próximo das férias (10 dias antes), um ícone de 🔔 aparecerá em seu cartão. A informação de quem o substituirá também ficará visível nesse período.</p>
+            </section>
+
+            <!-- Seguro Fiança -->
+            <section id="fianca" class="doc-section">
+                <h1>Seguro Fiança</h1>
+                <p>A garantia locatícia que substitui o fiador e traz segurança total para o locador.</p>
+                <h2>O que cobre?</h2>
+                <p>A cobertura básica garante o pagamento do aluguel e encargos legais (IPTU, condomínio, água e luz) em caso de inadimplência.</p>
+                <h2>Como solicitar?</h2>
+                <p>As análises devem ser encaminhadas via portal da seguradora ou através do nosso time de backoffice identificado no organograma na aba de Fiança.</p>
+            </section>
+
+            <!-- Capitalização -->
+            <section id="capitalizacao" class="doc-section">
+                <h1>Capitalização</h1>
+                <p>Uma alternativa rápida ao seguro fiança, onde o inquilino faz um depósito que serve de garantia.</p>
+                <h2>Benefícios</h2>
+                <ul>
+                    <li>Sem necessidade de análise de crédito profunda.</li>
+                    <li>Sorteios mensais para o inquilino.</li>
+                    <li>Resgate do valor corrigido ao final do contrato (se não houver débitos).</li>
+                </ul>
+            </section>
+
+            <!-- Seguro Condomínio -->
+            <section id="condominio" class="doc-section">
+                <h1>Seguro Condomínio</h1>
+                <p>Proteção obrigatória por lei para todos os condomínios residenciais, comerciais ou mistos.</p>
+                <div class="info-box">
+                    <strong>Base Legal:</strong>
+                    Exigido pelo Decreto-Lei 73/1966, Lei 4.591/1964 e Código Civil (Lei 10.406/2002). O síndico é o responsável legal pela contratação.
+                </div>
+                <h2>Coberturas Básicas</h2>
+                <p>Incêndio, explosão, fumaça, queda de aeronaves, danos elétricos, vendaval, impacto de veículos e alagamento.</p>
+                <h2>Responsabilidade Civil (Obrigatórias)</h2>
+                <ul>
+                    <li><strong>RC Condomínio:</strong> Danos materiais ou corporais causados a terceiros nas áreas comuns.</li>
+                    <li><strong>RC Síndico:</strong> Protege o síndico contra reclamações por erros ou omissões na gestão administrativa.</li>
+                </ul>
+            </section>
+
+            <!-- Seguro Conteúdo -->
+            <section id="conteudo" class="doc-section">
+                <h1>Seguro Conteúdo</h1>
+                <p>Proteção focada nos bens e equipamentos que compõem o patrimônio do condomínio ou da unidade.</p>
+                <h2>O que é coberto no Condomínio?</h2>
+                <p>Equipamentos (elevadores, bombas, geradores), móveis e utensílios de áreas comuns, sistemas de segurança e arquivos de documentos.</p>
+                <h2>Benefícios</h2>
+                <p>Reposição imediata de bens em caso de roubo, furto qualificado ou danos por desastres naturais.</p>
+            </section>
+
+            <!-- Prestamista -->
+            <section id="prestamista" class="doc-section">
+                <h1>Seguro Prestamista</h1>
+                <p>Segurança para quem empresta e para quem toma o crédito.</p>
+                <h2>Como funciona?</h2>
+                <p>Em caso de morte ou invalidez total por acidente do segurado, o seguro quita o saldo devedor de parcelas de contratos de locação ou empréstimos vinculados, protegendo o espólio e o credor.</p>
+            </section>
+
+            <!-- Dúvidas -->
+            <section id="duvidas" class="doc-section">
+                <h1>Dúvidas e Atualizações</h1>
+                <p>Precisa atualizar alguma informação ou tem uma dúvida técnica?</p>
+                <div class="faq-item">
+                    <div class="faq-question">Como atualizo meu telefone ou cargo? <span>+</span></div>
+                    <div class="faq-answer">As informações são puxadas automaticamente da planilha do Coda. Entre em contato com o ADM do sistema para solicitar a edição da linha correspondente ao seu nome.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">O aviso de férias não apareceu para mim, o que fazer? <span>+</span></div>
+                    <div class="faq-answer">Verifique se as datas de "Férias Início" e "Férias Fim" foram preenchidas corretamente no Coda. O sistema ativa o aviso 10 dias antes da data de início.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como contato o suporte da Lado Bom? <span>+</span></div>
+                    <div class="faq-answer">Utilize os contatos identificados no rodapé dos cartões dos gestores de cada área no organograma principal.</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="ajuda.js"></script>
+</body>
+
+</html>

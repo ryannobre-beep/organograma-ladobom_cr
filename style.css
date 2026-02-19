@@ -38,6 +38,28 @@ header {
     z-index: 100;
 }
 
+.nav-header {
+    display: flex;
+    gap: 2rem;
+    margin-right: 2rem;
+}
+
+.nav-header a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-header a:hover,
+.nav-header a.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
 .logo-container {
     display: flex;
     align-items: center;
@@ -208,7 +230,8 @@ main {
     gap: 0.75rem;
 }
 
-.email-btn, .phone-btn {
+.email-btn,
+.phone-btn {
     flex: 1;
     display: inline-flex;
     align-items: center;
