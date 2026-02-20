@@ -254,45 +254,102 @@ header {
 }
 
 
+/* --- FAQ PREMIUM DESIGN --- */
 .faq-section {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 2px dashed #edf2f7;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .faq-item {
-    margin-bottom: 1rem;
-    border: 1px solid #edf2f7;
-    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid rgba(80, 40, 150, 0.08);
+    border-radius: 12px;
     overflow: hidden;
-    background: white;
-    transition: box-shadow 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 .faq-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-light);
+    box-shadow: 0 10px 15px -3px rgba(80, 40, 150, 0.08);
+    transform: translateY(-2px);
+}
+
+.faq-item.open {
+    border-color: var(--primary);
+    background: linear-gradient(to bottom, #ffffff, #fdfaff);
 }
 
 .faq-question {
-    padding: 1rem 1.5rem;
-    font-weight: 600;
-    cursor: pointer;
+    width: 100%;
+    padding: 1.25rem 1.75rem;
+    background: none;
+    border: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    text-align: left;
+    gap: 1.5rem;
+}
+
+.faq-question span {
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--primary-dark);
+    line-height: 1.4;
+    flex: 1;
+}
+
+.faq-question .toggle-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.faq-item.open .toggle-icon {
+    transform: rotate(180deg);
+    color: var(--accent);
 }
 
 .faq-answer {
-    padding: 0 1.5rem 1.5rem 1.5rem;
-    display: none;
-    color: #4a5568;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    background: rgba(80, 40, 150, 0.02);
 }
 
 .faq-item.open .faq-answer {
-    display: block;
+    max-height: 500px;
+    opacity: 1;
+    padding: 0 1.75rem 1.75rem 1.75rem;
+}
+
+.faq-answer p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4A5568;
+    margin: 0;
+    border-top: 1px solid rgba(80, 40, 150, 0.05);
+    padding-top: 1.25rem;
+}
+
+/* Helper para seções que possuem FAQ dinâmico */
+.doc-section.has-faq {
+    border-bottom: 2px solid var(--bg-light);
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
 }
 
 .logo-container {

@@ -83,8 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (globalFaqContainer) globalFaqContainer.innerHTML = '';
 
                     // Injeta FAQs por categoria
+                    const categoryAliases = {
+                        'sinistros': 'sinistros-gerais',
+                        'sinistro': 'sinistros-gerais',
+                        'fiança': 'fianca',
+                        'capitalização': 'capitalizacao'
+                    };
+
                     Object.keys(faqByCategory).forEach(cat => {
-                        let container = document.getElementById(`faq-list-${cat}`) || globalFaqContainer;
+                        const targetId = categoryAliases[cat.toLowerCase()] || cat.toLowerCase();
+                        let container = document.getElementById(`faq-list-${targetId}`) || globalFaqContainer;
                         if (!container) return;
 
                         const html = faqByCategory[cat].map(item => `
@@ -99,17 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         `).join('');
 
-                        // Se for o global, acumula. Se for específico, substitui.
                         if (container === globalFaqContainer) {
                             container.innerHTML += html;
                         } else {
                             container.innerHTML = html;
+                            // Aplica classe indicativa para a seção
+                            container.closest('.doc-section')?.classList.add('has-faq');
                         }
                     });
 
                     // Re-bind eventos FAQ para itens dinâmicos
                     document.querySelectorAll('.faq-question').forEach(q => {
-                        q.addEventListener('click', () => {
+                        q.addEventListener('click', (e) => {
+                            e.stopPropagation();
                             const item = q.parentElement;
                             item.classList.toggle('open');
                             const icon = q.querySelector('.toggle-icon use');
