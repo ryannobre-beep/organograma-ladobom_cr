@@ -68,30 +68,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- BUSCA FAQ ---
             const faqResponse = await fetch('/api/data?type=faq');
-            if (!faqResponse.ok) {
-                const errBody = await faqResponse.json().catch(() => ({}));
-                throw new Error(errBody.error || `HTTP error! status: ${faqResponse.status}`);
-            }
-            const faqData = await faqResponse.json();
+            if (faqResponse.ok) {
+                const faqData = await faqResponse.json();
+                if (faqData && Array.isArray(faqData)) {
+                    const faqByCategory = {};
+                    faqData.forEach(item => {
+                        const cat = item.categoria || 'geral';
+                        if (!faqByCategory[cat]) faqByCategory[cat] = [];
+                        faqByCategory[cat].push(item);
+                    });
 
-            if (faqData && Array.isArray(faqData)) {
-                const faqContainer = document.getElementById('faq-container');
-                if (faqContainer) {
-                    faqContainer.innerHTML = faqData.map((item, index) => `
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                <span>${item.pergunta}</span>
-                                <svg class="toggle-icon"><use href="#icon-plus"></use></svg>
-                            </button>
-                            <div class="faq-answer">
-                                <p>${item.resposta}</p>
+                    // Limpa container global primeiro
+                    const globalFaqContainer = document.getElementById('faq-container');
+                    if (globalFaqContainer) globalFaqContainer.innerHTML = '';
+
+                    // Injeta FAQs por categoria
+                    Object.keys(faqByCategory).forEach(cat => {
+                        let container = document.getElementById(`faq-list-${cat}`) || globalFaqContainer;
+                        if (!container) return;
+
+                        const html = faqByCategory[cat].map(item => `
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>${item.pergunta}</span>
+                                    <svg class="toggle-icon"><use href="#icon-plus"></use></svg>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>${item.resposta}</p>
+                                </div>
                             </div>
-                        </div>
-                    `).join('');
+                        `).join('');
+
+                        // Se for o global, acumula. Se for específico, substitui.
+                        if (container === globalFaqContainer) {
+                            container.innerHTML += html;
+                        } else {
+                            container.innerHTML = html;
+                        }
+                    });
 
                     // Re-bind eventos FAQ para itens dinâmicos
-                    const newFaqQuestions = faqContainer.querySelectorAll('.faq-question');
-                    newFaqQuestions.forEach(q => {
+                    document.querySelectorAll('.faq-question').forEach(q => {
                         q.addEventListener('click', () => {
                             const item = q.parentElement;
                             item.classList.toggle('open');

@@ -36,7 +36,8 @@ export async function onRequestGet(context) {
 
     try {
         // 1. Busca colunas
-        const colsResponse = await fetch(`https://coda.io/apis/v1/docs/${CODA_DOC_ID}/tables/${TABLE_ID}/columns`, {
+        const codaColsUrl = `https://coda.io/apis/v1/docs/${CODA_DOC_ID}/tables/${TABLE_ID}/columns?cacheBust=${Date.now()}`;
+        const colsResponse = await fetch(codaColsUrl, {
             headers: { "Authorization": `Bearer ${CODA_API_KEY}` }
         });
 
@@ -57,7 +58,8 @@ export async function onRequestGet(context) {
         colsData.items.forEach(c => colMap[c.name.trim().toLowerCase()] = c.id);
 
         // 2. Busca linhas
-        const response = await fetch(`https://coda.io/apis/v1/docs/${CODA_DOC_ID}/tables/${TABLE_ID}/rows`, {
+        const codaRowsUrl = `https://coda.io/apis/v1/docs/${CODA_DOC_ID}/tables/${TABLE_ID}/rows?cacheBust=${Date.now()}`;
+        const response = await fetch(codaRowsUrl, {
             headers: { "Authorization": `Bearer ${CODA_API_KEY}` }
         });
 
@@ -125,11 +127,15 @@ function transformEquipe(items, colMap) {
 // NOVA LÓGICA PARA FAQ
 function transformFAQ(items, colMap) {
     return items.map(item => {
-        const getVal = (name) => colMap[name.toLowerCase()] ? item.values[colMap[name.toLowerCase()]] : "";
+        const getV = (id, name) => {
+            const v = item.values[id] || item.values[name] || item.values[name.toLowerCase()];
+            return (v && typeof v === 'object' ? v.value : v) || "";
+        };
         return {
-            pergunta: getVal("pergunta"),
-            resposta: getVal("resposta"),
-            categoria: getVal("categoria") || "geral"
+            pergunta: getV("c-1o5bE5d3cF", "Pergunta"),
+            resposta: getV("c-FTF6i84QnD", "Resposta"),
+            categoria: (getV("c-LBroW2RunS", "Área") || "geral").toLowerCase().trim(),
+            debug_row: item.values
         };
     });
 }
@@ -137,13 +143,17 @@ function transformFAQ(items, colMap) {
 // NOVA LÓGICA PARA ESPECIALISTAS (Cards da Central de Ajuda)
 function transformEspecialistas(items, colMap) {
     return items.map(item => {
-        const getVal = (name) => colMap[name.toLowerCase()] ? item.values[colMap[name.toLowerCase()]] : "";
+        const getV = (id, name) => {
+            const v = item.values[id] || item.values[name] || item.values[name.toLowerCase()];
+            return (v && typeof v === 'object' ? v.value : v) || "";
+        };
         return {
-            secao_id: getVal("seção id"), // ex: fianca, incendio
-            nome: getVal("nome"),
-            tag: getVal("tag"), // ex: Cotação, Contratação
-            email: getVal("email") || "equipe@ladobomseguros.com.br",
-            assunto: getVal("assunto") || "Contato Central de Ajuda"
+            secao_id: (getV("c-XYdmnRA6c7", "Área") || "").toLowerCase().trim(),
+            nome: getV("c-mgogWlwNXp", "Nome"),
+            tag: getV("c-kY68_aiY48", "Processo"),
+            email: getV("c-_2npD5ZeOB", "E-mail") || "equipe@ladobomseguros.com.br",
+            assunto: "Contato Central de Ajuda",
+            debug_row: item.values
         };
     });
 }
